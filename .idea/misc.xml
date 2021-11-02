@@ -11,9 +11,13 @@
         <entry key="..\:/Users/acer/AndroidStudioProjects/Pmobile/app/src/main/res/drawable/ic_launcher_background.xml" value="0.240625" />
         <entry key="..\:/Users/acer/AndroidStudioProjects/Pmobile/app/src/main/res/drawable/input_text.xml" value="0.240625" />
         <entry key="..\:/Users/acer/AndroidStudioProjects/Pmobile/app/src/main/res/drawable/menu_parkir.xml" value="0.240625" />
+        <entry key="..\:/Users/acer/AndroidStudioProjects/Pmobile/app/src/main/res/drawable/rouded_corner_semi_black.xml" value="0.240625" />
+        <entry key="..\:/Users/acer/AndroidStudioProjects/Pmobile/app/src/main/res/drawable/rounded_corner_semigray.xml" value="0.23697916666666666" />
+        <entry key="..\:/Users/acer/AndroidStudioProjects/Pmobile/app/src/main/res/drawable/rounded_setengah_semiblack.xml" value="0.240625" />
         <entry key="..\:/Users/acer/AndroidStudioProjects/Pmobile/app/src/main/res/drawable/roundedcorner.xml" value="0.125" />
         <entry key="..\:/Users/acer/AndroidStudioProjects/Pmobile/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/acer/AndroidStudioProjects/Pmobile/app/src/main/res/layout/activity_maps.xml" value="0.25" />
+        <entry key="..\:/Users/acer/AndroidStudioProjects/Pmobile/app/src/main/res/layout/cari_parkir.xml" value="0.22" />
         <entry key="..\:/Users/acer/AndroidStudioProjects/Pmobile/app/src/main/res/layout/informasi_parkir.xml" value="0.33" />
         <entry key="..\:/Users/acer/AndroidStudioProjects/Pmobile/app/src/main/res/layout/location_parking.xml" value="0.25" />
         <entry key="..\:/Users/acer/AndroidStudioProjects/Pmobile/app/src/main/res/layout/register.xml" value="0.25" />
