@@ -153,10 +153,10 @@
         </LinearLayout>
 
         <TextView
-            android:layout_below="@+id/Slot"
             android:id="@+id/Fasilitas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/Slot"
             android:layout_marginHorizontal="25dp"
             android:layout_marginTop="10dp"
             android:text="Fasilitas:"
@@ -165,9 +165,9 @@
 
         <RelativeLayout
             android:id="@+id/isiFasilitas"
-            android:layout_below="@+id/Fasilitas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/Fasilitas"
             android:layout_marginHorizontal="25dp"
             android:orientation="vertical"
             android:paddingLeft="30dp">
@@ -215,24 +215,31 @@
         </RelativeLayout>
 
         <TextView
+            android:id="@+id/operasional"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/isiFasilitas"
             android:layout_marginHorizontal="25dp"
-            android:layout_marginTop="10dp"
-            android:text="Operasional : Senin - Minggu 07.00 - 23.00"
+            android:text="Operasional :"
             android:textColor="@color/white"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            android:layout_marginTop="10dp"/>
 
         <TextView
+            android:id="@+id/tampilOperasional"
+            android:layout_toRightOf="@+id/operasional"
+            android:layout_below="@+id/isiFasilitas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp"
-            android:text="Operasional : Senin - Minggu 07.00 - 23.00"
+            android:text="Senin - Minggu 07.00 - 23.00"
             android:textColor="@color/white"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            android:layout_marginTop="10dp"/>
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/buttonPesan"
+            android:layout_below="@+id/operasional"
             android:layout_width="match_parent"
             android:layout_height="59dp"
             android:layout_gravity="center_horizontal"
@@ -242,16 +249,15 @@
             android:text="Pesan" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/buttonkembali"
+            android:layout_below="@+id/buttonPesan"
             android:layout_width="match_parent"
             android:layout_height="59dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginHorizontal="40dp"
-            android:layout_marginBottom="20dp"
             android:backgroundTint="@color/grey"
             android:text="Kembali"
             android:textColor="@color/semiblack" />
-
 
     </RelativeLayout>
 

@@ -21,6 +21,7 @@
         />
 
     <LinearLayout
+        android:id="@+id/textviewLokasi1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="25dp"
@@ -51,11 +52,11 @@
 
     <com.google.android.gms.maps.MapView
         android:id="@+id/mapView"
+        android:layout_below="@+id/textviewLokasi1"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="581dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="150dp"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp" />
 </RelativeLayout>
