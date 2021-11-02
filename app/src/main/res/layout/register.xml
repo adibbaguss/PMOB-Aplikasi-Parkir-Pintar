@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/header_register"
+        android:paddingBottom="30dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="80dp"
+            android:text="- REGISTER -"
+            android:textColor="@color/white"
+            android:textSize="35dp" />
+
+        <EditText
+            android:id="@+id/PersonName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="180dp"
+            android:background="@drawable/input_text"
+            android:ems="14"
+            android:hint="Name"
+            android:inputType="textPersonName"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="15dp" />
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="260dp"
+            android:background="@drawable/input_text"
+            android:ems="14"
+            android:hint="Username"
+            android:inputType="textPersonName"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="15dp" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="340dp"
+            android:background="@drawable/input_text"
+            android:ems="14"
+            android:hint="Email Address"
+            android:inputType="textEmailAddress"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="15dp" />
+
+        <EditText
+            android:id="@+id/Password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="420dp"
+            android:background="@drawable/input_text"
+            android:ems="14"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="15dp" />
+
+        <EditText
+            android:id="@+id/editTextPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="500dp"
+            android:background="@drawable/input_text"
+            android:ems="14"
+            android:hint="Phone Number"
+            android:inputType="phone"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="15dp" />
+
+    </FrameLayout>
+
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="600dp"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/tosca"
+        android:text="REGISTER"
+        android:textColor="@color/white"
+        android:paddingVertical="15dp"/>
+</RelativeLayout>

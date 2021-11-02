@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="black">#000</color>
+    <color name="white">#fff</color>
+    <color name="Violet">#9400D3</color>
+    <color name="Indigo">#4B0082</color>
+    <color name="blue">#0000FF</color>
+    <color name="green">#00FF00</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="orange">#FF7F00</color>
+    <color name="red">#FF0000</color>
+    //custom color button
+    <color name="semiblack">#222831</color>
+    <color name="semigrey">#393E46</color>
+    <color name="tosca">#00ADB5</color>
+    <color name="grey">#EEEEEE</color>
+</resources>
