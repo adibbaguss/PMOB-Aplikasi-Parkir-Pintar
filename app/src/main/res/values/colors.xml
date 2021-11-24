@@ -13,6 +13,7 @@
     <color name="yellow">#FFFF00</color>
     <color name="orange">#FF7F00</color>
     <color name="red">#FF0000</color>
+    <color name="lightgrey">#fcfcfc</color>
     //custom color button
     <color name="semiblack">#222831</color>
     <color name="semigrey">#393E46</color>

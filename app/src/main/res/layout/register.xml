@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/tosca">
 
 
     <RelativeLayout
@@ -18,7 +19,7 @@
             android:layout_marginTop="80dp"
             android:layout_centerHorizontal="true"
             android:text="- REGISTER -"
-            android:textColor="@color/white"
+            android:textColor="@color/semiblack"
             android:textSize="35dp" />
 
         <EditText
@@ -100,7 +101,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/tosca"
+        android:backgroundTint="@color/semigrey"
         android:text="REGISTER"
         android:textColor="@color/white"
         android:layout_marginTop="20dp"

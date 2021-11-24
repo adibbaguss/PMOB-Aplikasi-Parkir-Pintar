@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/white">
+    android:background="@color/tosca">
 
     <RelativeLayout
         android:id="@+id/formLogin"
@@ -15,21 +15,19 @@
         android:orientation="vertical"
         android:paddingBottom="60dp">
 
-        <TextView
-            android:id="@+id/textviewLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/imageLogo"
+            android:layout_width="239dp"
+            android:layout_height="144dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="220dp"
-            android:text="- LOGIN - "
-            android:textColor="@color/white"
-            android:textSize="40dp" />
+            android:layout_marginTop="120dp"
+            app:srcCompat="@drawable/asset1" />
 
         <EditText
             android:id="@+id/inputEmail"
-            android:layout_below="@+id/textviewLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/imageLogo"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="60dp"
             android:background="@drawable/input_text"
@@ -41,9 +39,9 @@
 
         <EditText
             android:id="@+id/inputPassword"
-            android:layout_below="@+id/inputEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/inputEmail"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="25dp"
             android:background="@drawable/input_text"
@@ -52,6 +50,8 @@
             android:inputType="textPassword"
             android:paddingHorizontal="10dp"
             android:paddingVertical="10dp" />
+
+
     </RelativeLayout>
 
 
@@ -62,9 +62,10 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:backgroundTint="@color/tosca"
+        android:backgroundTint="@color/semigrey"
         android:paddingVertical="15dp"
-        android:text="LOGIN" />
+        android:text="LOGIN"
+        />
 
     <Button
         android:id="@+id/buttonRegister"
