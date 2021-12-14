@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<!--    awal - button untuk kembali ke home.xml -->
+    android:layout_height="match_parent"
+    tools:context=".InformasiParkirActivity">
+    <!--    awal - button untuk kembali ke home.xml -->
     <ImageView
         android:id="@+id/BackButtonInfoParkir"
         android:layout_width="wrap_content"
@@ -13,9 +14,9 @@
         android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
         app:srcCompat="?attr/actionModeCloseDrawable"/>
-<!--   akhir - button untuk kembali ke home.xml-->
+    <!--   akhir - button untuk kembali ke home.xml-->
 
-<!--    awal - menampilkan nama dan alamat lokasi -->
+    <!--    awal - menampilkan nama dan alamat lokasi -->
     <LinearLayout
         android:id="@+id/TampilLokasi"
         android:layout_width="match_parent"
@@ -39,10 +40,10 @@
             android:textColor="@color/black"
             android:textSize="12dp" />
     </LinearLayout>
-<!--    akhir - menampilkan nama dan alamat lokasi-->
+    <!--    akhir - menampilkan nama dan alamat lokasi-->
 
 
-<!--   awal  - menampilkan gambar lokasi parkir -->
+    <!--   awal  - menampilkan gambar lokasi parkir -->
     <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/tampilGambar"
         android:layout_below="@id/TampilLokasi"
@@ -60,9 +61,9 @@
             android:layout_height="200dp"
             app:srcCompat="?android:attr/fastScrollTrackDrawable" />
     </androidx.cardview.widget.CardView>
-<!--    akhir - menampilkan gambar lokasi parkir-->
+    <!--    akhir - menampilkan gambar lokasi parkir-->
 
-<!--    awal - menampilkan informasi parkir -->
+    <!--    awal - menampilkan informasi parkir -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -82,7 +83,7 @@
             android:textColor="@color/white"
             android:textSize="20dp" />
 
-<!--    awal - menampilkan rating tempat parkir-->
+        <!--    awal - menampilkan rating tempat parkir-->
         <LinearLayout
             android:id="@+id/Rating"
             android:layout_width="match_parent"
@@ -111,9 +112,9 @@
                 android:textColor="@color/white"
                 android:textSize="15dp" />
         </LinearLayout>
-<!--    akhir - menampilkan rating tempat parkir -->
+        <!--    akhir - menampilkan rating tempat parkir -->
 
-<!--    awal - radio button pemilihan jenis parkir  -->
+        <!--    awal - radio button pemilihan jenis parkir  -->
         <RadioGroup
             android:id="@+id/radioGroupParkir"
             android:layout_width="match_parent"
@@ -140,9 +141,9 @@
                 android:textColor="@color/white"
                 android:textSize="14dp" />
         </RadioGroup>
- <!--    akhir - radio button pemilihan jenis parkir  -->
+        <!--    akhir - radio button pemilihan jenis parkir  -->
 
-<!--     awal - menampilkan slot parkir-->
+        <!--     awal - menampilkan slot parkir-->
         <LinearLayout
             android:id="@+id/Slot"
             android:layout_width="match_parent"
@@ -176,7 +177,7 @@
                 android:textColor="@color/white"
                 android:textSize="15dp" />
 
-        <!-- slot mobil-->
+            <!-- slot mobil-->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -184,9 +185,9 @@
                 android:textColor="@color/white"
                 android:textSize="15dp" />
         </LinearLayout>
-<!--       akhir - menampilkan slot parkir -->
+        <!--       akhir - menampilkan slot parkir -->
 
- <!--  awal - menampilkan fasilitas -->
+        <!--  awal - menampilkan fasilitas -->
         <TextView
             android:id="@+id/Fasilitas"
             android:layout_width="wrap_content"
@@ -248,9 +249,9 @@
                 android:textSize="15dp" />
 
         </RelativeLayout>
-<!--        akhir - menampilkan fasilitas-->
+        <!--        akhir - menampilkan fasilitas-->
 
-<!--        awal - menampilkan operasional-->
+        <!--        awal - menampilkan operasional-->
         <TextView
             android:id="@+id/operasional"
             android:layout_width="wrap_content"
@@ -273,9 +274,9 @@
             android:text="Senin - Minggu 07.00 - 23.00"
             android:textColor="@color/white"
             android:textSize="15dp" />
-<!--        akhir - menampilkan operasional-->
+        <!--        akhir - menampilkan operasional-->
 
-<!--        awal - button pesan -->
+        <!--        awal - button pesan -->
         <Button
             android:id="@+id/buttonPesan"
             android:layout_width="match_parent"
@@ -286,9 +287,9 @@
             android:layout_marginTop="20dp"
             android:backgroundTint="@color/tosca"
             android:text="Pesan" />
-<!--        akhir- button pesan-->
+        <!--        akhir- button pesan-->
 
     </RelativeLayout>
-<!--    akhir - menampilkan informasi parkir-->
+    <!--    akhir - menampilkan informasi parkir-->
 
 </RelativeLayout>
