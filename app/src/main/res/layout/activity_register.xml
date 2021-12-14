@@ -98,15 +98,15 @@
 
 
     <Button
-        android:id="@+id/buttonRegister1"
-        android:layout_below="@+id/formRegister"
+        android:id="@+id/buttonRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/formRegister"
         android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/semigrey"
-        android:text="REGISTER"
-        android:textColor="@color/white"
         android:layout_marginTop="20dp"
+        android:backgroundTint="@color/semigrey"
+        android:paddingHorizontal="80dp"
         android:paddingVertical="15dp"
-        android:paddingHorizontal="80dp"/>
+        android:text="REGISTER"
+        android:textColor="@color/white" />
 </RelativeLayout>
