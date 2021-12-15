@@ -18,7 +18,7 @@
             android:id="@+id/textViewRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="30dp"
             android:layout_centerHorizontal="true"
             android:text="- REGISTER -"
             android:textColor="@color/semiblack"
@@ -81,8 +81,22 @@
             android:paddingVertical="15dp" />
 
         <EditText
-            android:id="@+id/isiNomorPhone"
+            android:id="@+id/isiConfPassword"
             android:layout_below="@+id/isiPassword"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/input_text"
+            android:ems="14"
+            android:layout_centerHorizontal="true"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="15dp" />
+
+        <EditText
+            android:id="@+id/isiNomorPhone"
+            android:layout_below="@+id/isiConfPassword"
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -94,8 +108,8 @@
             android:paddingHorizontal="15dp"
             android:paddingVertical="15dp" />
 
-    </RelativeLayout>
 
+    </RelativeLayout>
 
     <Button
         android:id="@+id/buttonRegister"
@@ -109,4 +123,11 @@
         android:paddingVertical="15dp"
         android:text="REGISTER"
         android:textColor="@color/white" />
+    <ProgressBar
+        android:id="@+id/Progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        />
+
 </RelativeLayout>

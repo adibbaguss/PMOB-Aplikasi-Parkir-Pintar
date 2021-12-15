@@ -1,5 +1,6 @@
 package com.example.pmobile;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,11 +17,9 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -31,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button toRegister,AfterLogin;
     private EditText editText_email, editText_password;
     private ProgressBar loading;
-    private static String URL_LOGIN = "http:/blabla";
+    private static String URL_LOGIN = "https://apismartparking.000webhostapp.com/api/login";
 
 
 
@@ -113,16 +112,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            String username = jsonObject.getString("username");
-                            String pesan = jsonObject.getString("pesan");
-                            String value = jsonObject.getString("value");
-                            if (value.equals("1")) {
-                                SharedPreferences sharedPreferences = MainActivity.this.getSharedPreferences("SMART PARKING", MODE_PRIVATE);
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putString(getString(R.string.PREF_USERNAME), username);
-                                editor.commit();
+                            Boolean success= jsonObject.getBoolean("success");
+                            JSONObject data = jsonObject.getJSONObject("data");
+                            String token = data.getString("token");
+                            String msg = jsonObject.getString("message");
+                            if(success) {
+                                SharedPreferences mSettings = MainActivity.this.getSharedPreferences("Settings", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = mSettings.edit();
+                                editor.putString("token", token);
+                                editor.apply();
 
-                                Toast.makeText(MainActivity.this, "Login Sukses", Toast.LENGTH_SHORT).show();
+
+//                                SharedPreferences sharedPreferences = MainActivity.this.getSharedPreferences("com.example.pmobile", MODE_PRIVATE);
+//                                SharedPreferences.Editor editor = sharedPreferences.edit();
+//                                editor.putString(getString(R.string.PREF_TOKEN), token);
+//                                editor.apply();
+//                                editor.commit();
+
+
+                                Toast.makeText(MainActivity.this, "Login Sukses"+token, Toast.LENGTH_SHORT).show();
 
                                 Intent to_home = new Intent(MainActivity.this, HomeActivity.class);
                                 startActivity(to_home);
@@ -130,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 loading.setVisibility(View.GONE);
                                 AfterLogin.setVisibility(View.VISIBLE);
                             } else {
-                                Toast.makeText(MainActivity.this, "Gagal Login!" + pesan, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "Gagal Login!" + msg, Toast.LENGTH_SHORT).show();
                                 loading.setVisibility(View.GONE);
                                 AfterLogin.setVisibility(View.VISIBLE);
                             }
@@ -148,6 +156,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Toast.makeText(MainActivity.this, "Error!" + error.toString(),Toast.LENGTH_SHORT).show();
                         loading.setVisibility(View.GONE);
                         AfterLogin.setVisibility(View.VISIBLE);
+                        error.printStackTrace();
                     }
                 })
 
@@ -156,9 +165,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             protected Map<String,String> getParams() throws AuthFailureError{
                 Map<String, String> params = new HashMap<>();
                 params.put("email",email);
-                params.put("pass", pass);
+                params.put("password", pass);
                 return params;
             }
+
         };
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);

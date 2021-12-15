@@ -2,5 +2,5 @@
     <string name="app_name">Pmobile</string>
     <string name="register">register</string>
 
-    <string name="PREF_USERNAME">00000000</string>
+    <string name="PREF_TOKEN">00000000</string>
 </resources>
