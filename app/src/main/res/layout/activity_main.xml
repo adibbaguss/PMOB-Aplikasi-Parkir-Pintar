@@ -77,6 +77,11 @@
         android:paddingVertical="15dp"
         android:text="REGISTER"
         android:textColor="@color/tosca" />
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Progress"
+        android:layout_centerInParent="true"/>
 
 
 </RelativeLayout>

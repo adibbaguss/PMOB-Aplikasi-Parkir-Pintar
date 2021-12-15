@@ -1,15 +1,37 @@
 package com.example.pmobile;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
-    Button toRegister;
-    Button AfterLogin;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    private Button toRegister,AfterLogin;
+    private EditText editText_email, editText_password;
+    private ProgressBar loading;
+    private static String URL_LOGIN = "http:/blabla";
 
 
 
@@ -18,25 +40,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         System.out.println("onCreate");
+
+        editText_email = (EditText)findViewById(R.id.inputEmail);
+        editText_password = (EditText)findViewById(R.id.inputPassword);
         AfterLogin = (Button)findViewById(R.id.buttonLogin);
         toRegister = (Button)findViewById(R.id.buttonRegister);
+        loading = (ProgressBar)findViewById(R.id.Progress);
 
-        toRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent A_register = new Intent(MainActivity.this, RegisterActivity.class);
-                startActivity(A_register);
-            }
-        });
-
-        //sementara untuk login
-        AfterLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent A_login = new Intent(MainActivity.this, HomeActivity.class);
-                startActivity(A_login);
-            }
-        });
+        toRegister.setOnClickListener(this);
+        AfterLogin.setOnClickListener(this);
 
     }
 
@@ -72,4 +84,85 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onClick(View v) {
+        if(v == AfterLogin){
+            String email = editText_email.getText().toString().trim();
+            String pass = editText_password.getText().toString().trim();
+
+            if(!email.isEmpty() && !pass.isEmpty()){
+                Login(email,pass);
+            }else{
+                editText_email.setError("Masukkan Email:");
+                editText_password.setError("Masukkan Password:");
+            }
+        }else if(v == toRegister){
+            Intent register = new Intent(MainActivity.this, RegisterActivity.class);
+            startActivity(register);
+        }
+    }
+
+    private void Login(final String email, final String pass) {
+        loading.setVisibility(View.VISIBLE);
+        AfterLogin.setVisibility(View.GONE);
+
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_LOGIN,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String username = jsonObject.getString("username");
+                            String pesan = jsonObject.getString("pesan");
+                            String value = jsonObject.getString("value");
+                            if (value.equals("1")) {
+                                SharedPreferences sharedPreferences = MainActivity.this.getSharedPreferences("SMART PARKING", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString(getString(R.string.PREF_USERNAME), username);
+                                editor.commit();
+
+                                Toast.makeText(MainActivity.this, "Login Sukses", Toast.LENGTH_SHORT).show();
+
+                                Intent to_home = new Intent(MainActivity.this, HomeActivity.class);
+                                startActivity(to_home);
+
+                                loading.setVisibility(View.GONE);
+                                AfterLogin.setVisibility(View.VISIBLE);
+                            } else {
+                                Toast.makeText(MainActivity.this, "Gagal Login!" + pesan, Toast.LENGTH_SHORT).show();
+                                loading.setVisibility(View.GONE);
+                                AfterLogin.setVisibility(View.VISIBLE);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(MainActivity.this, "Login Error!" + e.toString(), Toast.LENGTH_SHORT).show();
+                            loading.setVisibility(View.GONE);
+                            AfterLogin.setVisibility(View.VISIBLE);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(MainActivity.this, "Error!" + error.toString(),Toast.LENGTH_SHORT).show();
+                        loading.setVisibility(View.GONE);
+                        AfterLogin.setVisibility(View.VISIBLE);
+                    }
+                })
+
+        {
+            @Override
+            protected Map<String,String> getParams() throws AuthFailureError{
+                Map<String, String> params = new HashMap<>();
+                params.put("email",email);
+                params.put("pass", pass);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+
+    }
 }
