@@ -116,16 +116,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             Boolean success= jsonObject.getBoolean("success");
                             JSONObject data = jsonObject.getJSONObject("data");
                             String token = data.getString("token");
+                            String name = data.getString("name");
                             String msg = jsonObject.getString("message");
                             if(success) {
                                 SharedPreferences mSettings = MainActivity.this.getSharedPreferences("Settings", Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = mSettings.edit();
                                 editor.putString("token", token);
+                                editor.putString("name",name);
                                 editor.apply();
 
 
 
-                                Toast.makeText(MainActivity.this, "Login Sukses"+token, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "Login Sukses", Toast.LENGTH_SHORT).show();
 
                                 Intent to_home = new Intent(MainActivity.this, HomeActivity.class);
                                 startActivity(to_home);

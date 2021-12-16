@@ -4,4 +4,36 @@
 
     <string name="PREF_TOKEN">00000000</string>
     <string name="title_activity_maps">MapsActivity</string>
+
+    <!--route API-->
+    <string name="LOGIN">https://apismartparking.000webhostapp.com/api/login</string>
+    <string name="REGISTER">https://apismartparking.000webhostapp.com/api/register</string>
+    <!--get data user-->
+    <string name="USER">https://apismartparking.000webhostapp.com/api/user</string>
+    <!--get logout-->
+    <string name="LOGOUT">https://apismartparking.000webhostapp.com/api/logout</string>
+
+
+    <!--method get,mengembalikan semua data tempat parkir-->
+    <string name="GET_ALL">https://apismartparking.000webhostapp.com/api/parkinglot</string>
+    <!--method get,dengan parameter pencarian lokasi parkir berdasarkan lokasi-->
+    <string name="FIND">https://apismartparking.000webhostapp.com/api/parkinglot/</string>
+    <!--method post,untuk memberi rating ke parkinglot-->
+    <string name="SEND_RATING">https://apismartparking.000webhostapp.com/api/parkinglot/rating</string>
+
+
+    <!--method post,untuk pemesanan parkir-->
+    <string name="PESAN">https://apismartparking.000webhostapp.com/api/pesan</string>
+
+    <!--method get,untuk melihat detail pesan parkir-->
+    <string name="DETAIL">https://apismartparking.000webhostapp.com/api/pesan/detail</string>
+
+    <!--method get,untuk batal pesan parkir-->
+    <string name="BATAL">https://apismartparking.000webhostapp.com/api/pesan/batal</string>
+
+    <!--method get,untuk sudah sampai di tempat parkir-->
+    <string name="SAMPAI">https://apismartparking.000webhostapp.com/api/pesan/parked</string>
+
+    <!--method get,untuk selesai parkir-->
+    <string name="SELESAI">https://apismartparking.000webhostapp.com/api/pesan/selesai</string>
 </resources>
