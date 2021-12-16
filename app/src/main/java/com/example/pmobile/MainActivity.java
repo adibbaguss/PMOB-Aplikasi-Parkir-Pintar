@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         AfterLogin = (Button)findViewById(R.id.buttonLogin);
         toRegister = (Button)findViewById(R.id.buttonRegister);
         loading = (ProgressBar)findViewById(R.id.Progress);
+        loading.setVisibility(View.INVISIBLE);
 
         toRegister.setOnClickListener(this);
         AfterLogin.setOnClickListener(this);
@@ -122,12 +123,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 editor.putString("token", token);
                                 editor.apply();
 
-
-//                                SharedPreferences sharedPreferences = MainActivity.this.getSharedPreferences("com.example.pmobile", MODE_PRIVATE);
-//                                SharedPreferences.Editor editor = sharedPreferences.edit();
-//                                editor.putString(getString(R.string.PREF_TOKEN), token);
-//                                editor.apply();
-//                                editor.commit();
 
 
                                 Toast.makeText(MainActivity.this, "Login Sukses"+token, Toast.LENGTH_SHORT).show();

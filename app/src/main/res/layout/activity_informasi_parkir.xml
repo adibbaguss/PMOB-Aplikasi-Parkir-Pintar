@@ -6,14 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".InformasiParkirActivity">
     <!--    awal - button untuk kembali ke home.xml -->
-    <ImageView
-        android:id="@+id/BackButtonInfoParkir"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
-        app:srcCompat="?attr/actionModeCloseDrawable"/>
+<!--    <ImageView-->
+<!--        android:id="@+id/BackButtonInfoParkir"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentLeft="true"-->
+<!--        android:layout_marginLeft="5dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        app:srcCompat="?attr/actionModeCloseDrawable"/>-->
     <!--   akhir - button untuk kembali ke home.xml-->
 
     <!--    awal - menampilkan nama dan alamat lokasi -->
@@ -23,7 +23,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:orientation="vertical"
-        android:layout_below="@+id/BackButtonInfoParkir">
+        android:layout_marginTop="20dp"
+        >
 
         <TextView
             android:id="@+id/tampilTempat2"

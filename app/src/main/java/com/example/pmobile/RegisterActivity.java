@@ -43,6 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
         editTextConfPass = (EditText) findViewById(R.id.isiConfPassword);
         editTextPhone = (EditText) findViewById(R.id.isiNomorPhone);
         loading = (ProgressBar)findViewById(R.id.Progress);
+        loading.setVisibility(View.INVISIBLE);
 
         AfterRegister.setOnClickListener(new View.OnClickListener() {
 
