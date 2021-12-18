@@ -3,10 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/activity_home.xml" value="0.2" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/activity_home.xml" value="0.16" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/activity_informasi_parkir.xml" value="0.2" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/activity_main.xml" value="0.1793478260869565" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/activity_maps.xml" value="0.21" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/fragment_parkir.xml" value="0.22196531791907514" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/fragment_rekomendasi_parkir.xml" value="0.2" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/home.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/informasi_parkir.xml" value="0.25" />

@@ -20,6 +20,8 @@
     <string name="FIND">https://apismartparking.000webhostapp.com/api/parkinglot/</string>
     <!--method post,untuk memberi rating ke parkinglot-->
     <string name="SEND_RATING">https://apismartparking.000webhostapp.com/api/parkinglot/rating</string>
+<!--    method get,detail parking lot by id-->
+    <string name="PARK_DETAIL">https://apismartparking.000webhostapp.com/api/parkinglot/detail/</string>
 
 
     <!--method post,untuk pemesanan parkir-->
@@ -36,4 +38,6 @@
 
     <!--method get,untuk selesai parkir-->
     <string name="SELESAI">https://apismartparking.000webhostapp.com/api/pesan/selesai</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

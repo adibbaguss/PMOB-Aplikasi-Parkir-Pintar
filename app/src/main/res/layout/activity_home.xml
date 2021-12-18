@@ -123,49 +123,19 @@ tools:context=".HomeActivity">
       android:textColor="@color/white"
       android:textSize="15dp" />
 
-  <RelativeLayout
-      android:id="@+id/layoutLokasiParkir"
+<!--  container fragment-->
+  <ScrollView
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
       android:layout_below="@+id/textviewLokasiTerdekat"
-      android:background="@drawable/rounded_corner_white"
-      android:paddingHorizontal="20dp"
-      android:paddingVertical="10dp">
-
-    <ImageView
-        android:id="@+id/imageViewMaps"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_baseline_map_24" />
-
-    <TextView
-        android:id="@+id/tampilListParkir"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_toRightOf="@+id/imageViewMaps"
-        android:text="Ambarukmo Plaza Parking"
-        android:textColor="@color/black" />
-
-    <TextView
-        android:id="@+id/tampilHargaParkir"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="5dp"
-        android:layout_toRightOf="@+id/tampilListParkir"
-        android:gravity="right"
-        android:text="Rp 5.000,-/Jam"
-        android:textColor="@color/black" />
-
-    <Button
-        android:id="@+id/buttonInfoParkir"
+      android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_below="@+id/textviewLokasiTerdekat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageViewMaps"
-        android:backgroundTint="@color/tosca"
-        android:text="INFORMASI PARKIR" />
-  </RelativeLayout>
+        android:id="@+id/rekompParkir"
+        android:orientation="vertical">
+    </LinearLayout>
+  </ScrollView>
+
 </RelativeLayout>
 </RelativeLayout>
