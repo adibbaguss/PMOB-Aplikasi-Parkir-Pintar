@@ -8,8 +8,6 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
 import com.android.volley.AuthFailureError;
@@ -37,6 +35,9 @@ import java.util.Map;
 public class InformasiParkirActivity extends FragmentActivity implements OnMapReadyCallback {
     private String park_id;
     private String token;
+    private Double Lat;
+    private Double Long;
+    private String nama;
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
@@ -105,7 +106,10 @@ public class InformasiParkirActivity extends FragmentActivity implements OnMapRe
                             TextView namaParkir = findViewById(R.id.tampilTempat2);
                             TextView lokasiParkir = findViewById(R.id.lokasi);
                             namaParkir.setText(dataParkir.getString("name"));
+                            nama = dataParkir.getString("name");
                             lokasiParkir.setText(dataParkir.getString("location"));
+                            Lat = dataParkir.getDouble("latitude");
+                            Long = dataParkir.getDouble("longitude");
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -140,8 +144,8 @@ public class InformasiParkirActivity extends FragmentActivity implements OnMapRe
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-7.808570, 110.388931);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in UAD kampus Tercinta :)"));
+        LatLng sydney = new LatLng(Lat, Long);
+        mMap.addMarker(new MarkerOptions().position(sydney).title(nama));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 }
