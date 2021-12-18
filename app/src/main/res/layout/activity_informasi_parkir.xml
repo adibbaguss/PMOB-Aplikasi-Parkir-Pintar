@@ -57,11 +57,16 @@
         android:layout_marginHorizontal="10dp"
         android:layout_marginVertical="10dp">
 
-        <ImageView
-            android:id="@+id/Gambar"
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            app:srcCompat="?android:attr/fastScrollTrackDrawable" />
+            android:layout_below="@+id/textviewLokasi"
+            android:layout_alignParentBottom="true"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"
+            />
     </androidx.cardview.widget.CardView>
     <!--    akhir - menampilkan gambar lokasi parkir-->
 
