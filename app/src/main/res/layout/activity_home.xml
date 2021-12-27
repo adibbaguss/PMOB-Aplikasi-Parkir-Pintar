@@ -7,37 +7,49 @@ android:layout_height="match_parent"
 tools:context=".HomeActivity">
 
 <!--  awal - say hello user-->
-<RelativeLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/sambutan">
-  <TextView
-      android:id="@+id/tampilTanggal"
+  <RelativeLayout
+      android:id="@+id/sambutan"
       android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="Kamis, Nov 02 2021"
-      android:layout_marginTop="20dp"
-      android:layout_marginLeft="20dp"/>
-  <TextView
-      android:id="@+id/textviewSambutan"
-      android:layout_below="@+id/tampilTanggal"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="Hi, "
-      android:textSize="20dp"
-      android:layout_marginLeft="20dp"/>
+      android:layout_height="wrap_content">
 
-  <TextView
-      android:id="@+id/tampilUsername"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_below="@+id/tampilTanggal"
-      android:layout_toRightOf="@+id/textviewSambutan"
-      android:text="IrfanFajruSyawal"
-      android:textColor="@color/black"
-      android:textSize="20dp"
-      android:textStyle="bold" />
-</RelativeLayout>
+    <TextView
+        android:id="@+id/tampilTanggal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Kamis, Nov 02 2021" />
+
+    <TextView
+        android:id="@+id/textviewSambutan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tampilTanggal"
+        android:layout_marginLeft="20dp"
+        android:text="Hi, "
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/tampilUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tampilTanggal"
+        android:layout_toRightOf="@+id/textviewSambutan"
+        android:text="username"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <ImageButton
+        android:id="@+id/buttonLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="25dp"
+        android:background="@color/white"
+        android:src="@drawable/ic_baseline_logout_24" />
+  </RelativeLayout>
 <!--  akhir - say hello user-->
   <RelativeLayout
       android:id="@+id/layoutLokasi"
@@ -63,7 +75,7 @@ tools:context=".HomeActivity">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textviewLokasiParkir"
-        android:text="Jl. Brigjend Katamso 75-77, Yogyakarta, Indonesia"
+        android:text="Jl. Alamat Parkir"
         android:textColor="@color/white" />
 
     <Button
@@ -75,67 +87,60 @@ tools:context=".HomeActivity">
         android:text="PERGI KE LOKASI" />
   </RelativeLayout>
 
-<RelativeLayout
-    android:id="@+id/layoutCariParkir"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_below="@+id/layoutLokasi"
-    android:layout_marginTop="20dp"
-    android:background="@drawable/bottom_menu"
-    android:paddingHorizontal="20dp"
-    android:paddingTop="50dp"
-    android:paddingBottom="10dp">
-
-
   <RelativeLayout
-      android:id="@+id/layoutPencarian"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginHorizontal="10dp"
-      android:layout_marginTop="10dp"
-      android:background="@drawable/input_text_non_stroke">
-
-    <SearchView
-        android:id="@+id/iconSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <EditText
-        android:id="@+id/inputLokasi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="2dp"
-        android:layout_toRightOf="@+id/iconSearch"
-        android:hint="Cari Loksi Parkir"
-        android:inputType="text"
-        tools:ignore="TouchTargetSizeCheck" />
-  </RelativeLayout>
-
-  <TextView
-      android:id="@+id/textviewLokasiTerdekat"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_below="@+id/layoutPencarian"
-      android:layout_marginLeft="5dp"
-      android:layout_marginTop="20dp"
-      android:text="Lokasi Terdekat Saat ini"
-      android:textColor="@color/white"
-      android:textSize="15dp" />
-
-<!--  container fragment-->
-  <ScrollView
+      android:id="@+id/layoutCariParkir"
       android:layout_width="match_parent"
-      android:layout_below="@+id/textviewLokasiTerdekat"
-      android:layout_height="match_parent">
-    <LinearLayout
-        android:layout_below="@+id/textviewLokasiTerdekat"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rekompParkir"
-        android:orientation="vertical">
-    </LinearLayout>
-  </ScrollView>
+      android:layout_height="match_parent"
+      android:layout_below="@+id/layoutLokasi"
+      android:layout_marginTop="20dp"
+      android:background="@drawable/bottom_menu"
+      android:paddingHorizontal="20dp"
+      android:paddingTop="50dp"
+      android:paddingBottom="10dp">
 
-</RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutPencarian"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/input_text_non_stroke">
+
+      <SearchView
+          android:id="@+id/Search"
+          android:imeOptions="actionDone"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:queryHint="Search... "
+          android:iconifiedByDefault="false"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textviewLokasiTerdekat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutPencarian"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="20dp"
+        android:text="Lokasi Terdekat Saat ini"
+        android:textColor="@color/white"
+        android:textSize="15dp" />
+
+    <!--  container fragment-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textviewLokasiTerdekat">
+
+      <LinearLayout
+          android:id="@+id/rekompParkir"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/textviewLokasiTerdekat"
+          android:orientation="vertical"></LinearLayout>
+    </ScrollView>
+
+  </RelativeLayout>
 </RelativeLayout>

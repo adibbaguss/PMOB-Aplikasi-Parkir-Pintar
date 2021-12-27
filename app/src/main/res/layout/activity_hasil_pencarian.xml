@@ -1,9 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".HasilPencarianActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/textviewListPencarian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tittle_menu"
+            android:text="List Pencarian"
+            android:paddingVertical="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="15dp"
+            android:textColor="@color/white"
+            android:textSize="15dp" />
+        <ImageButton
+            android:id="@+id/buttonLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="25dp"
+            android:background="@color/white"
+            android:src="@drawable/ic_baseline_logout_24"
+            android:layout_marginTop="20dp"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rekompParkir"
+            android:orientation="vertical">
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

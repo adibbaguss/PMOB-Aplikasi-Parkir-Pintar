@@ -6,17 +6,33 @@
     tools:context=".MapsActivity">
 
 
-    <TextView
-        android:id="@+id/textviewLokasi"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/tittle_menu"
-        android:text="Lokasi"
-        android:paddingVertical="5dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="15dp"
-        android:textColor="@color/white"
-        android:textSize="15dp" />
+        android:id="@+id/textviewLokasi"
+        android:layout_marginBottom="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tittle_menu"
+            android:text="Lokasi"
+            android:paddingVertical="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="15dp"
+            android:textColor="@color/white"
+            android:textSize="15dp" />
+
+        <ImageButton
+            android:id="@+id/buttonLogout"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="25dp"
+            android:background="@color/white"
+            android:src="@drawable/ic_baseline_logout_24" />
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/textviewLokasi1"
@@ -58,6 +74,5 @@
         android:layout_below="@+id/textviewLokasi1"
         android:layout_alignParentBottom="true"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp"
-        />
+        tools:layout_editor_absoluteY="0dp" />
 </RelativeLayout>

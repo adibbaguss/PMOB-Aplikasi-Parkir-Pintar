@@ -20,7 +20,7 @@
     <string name="FIND">https://apismartparking.000webhostapp.com/api/parkinglot/</string>
     <!--method post,untuk memberi rating ke parkinglot-->
     <string name="SEND_RATING">https://apismartparking.000webhostapp.com/api/parkinglot/rating</string>
-<!--    method get,detail parking lot by id-->
+    <!--    method get,detail parking lot by id-->
     <string name="PARK_DETAIL">https://apismartparking.000webhostapp.com/api/parkinglot/detail/</string>
 
 

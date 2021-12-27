@@ -5,26 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".InformasiParkirActivity">
-    <!--    awal - button untuk kembali ke home.xml -->
-<!--    <ImageView-->
-<!--        android:id="@+id/BackButtonInfoParkir"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_alignParentLeft="true"-->
-<!--        android:layout_marginLeft="5dp"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        app:srcCompat="?attr/actionModeCloseDrawable"/>-->
-    <!--   akhir - button untuk kembali ke home.xml-->
 
     <!--    awal - menampilkan nama dan alamat lokasi -->
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/TampilLokasi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
-        android:orientation="vertical"
-        android:layout_marginTop="20dp"
-        >
+        android:layout_marginTop="20dp">
 
         <TextView
             android:id="@+id/tampilTempat2"
@@ -40,8 +28,19 @@
             android:id="@+id/lokasi"
             android:text="Jl. Brigjend Katamso 75-77, Yogyakarta, Indonesia"
             android:textColor="@color/black"
-            android:textSize="12dp" />
-    </LinearLayout>
+            android:textSize="12dp"
+            android:layout_below="@id/tampilTempat2"/>
+
+        <ImageButton
+            android:id="@+id/buttonLogout2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@color/white"
+            android:src="@drawable/ic_baseline_logout_24" />
+    </RelativeLayout>
+
     <!--    akhir - menampilkan nama dan alamat lokasi-->
 
 
@@ -74,28 +73,47 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/tampilGambar"
         android:background="@drawable/bottom_menu"
         android:orientation="vertical"
         android:paddingTop="60dp"
-        android:paddingBottom="10dp"
-        android:layout_below="@id/tampilGambar">
+        android:paddingBottom="10dp">
 
-        <TextView
-            android:id="@+id/tampilHarga"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="25dp"
+            android:orientation="horizontal"
             android:gravity="right"
-            android:text="Rp 5.000/jam"
-            android:textColor="@color/white"
-            android:textSize="20dp" />
+            android:paddingHorizontal="25dp"
+            android:id="@+id/price">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="Rp. "
+                android:textColor="@color/white"
+                android:textSize="20dp" />
+            <TextView
+                android:id="@+id/tampilHarga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0000"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=",- /Jam"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
+        </LinearLayout>
 
         <!--    awal - menampilkan rating tempat parkir-->
         <LinearLayout
             android:id="@+id/Rating"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tampilHarga"
+            android:layout_below="@+id/price"
             android:layout_marginHorizontal="25dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -170,9 +188,17 @@
 
             <!-- slot motor-->
             <TextView
+                android:id="@+id/tampilslotBike"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="10 Motor"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Motor"
                 android:textColor="@color/white"
                 android:textSize="15dp" />
 
@@ -186,9 +212,17 @@
 
             <!-- slot mobil-->
             <TextView
+                android:id="@+id/tampilslotCar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="5 Mobil"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Mobil"
                 android:textColor="@color/white"
                 android:textSize="15dp" />
         </LinearLayout>

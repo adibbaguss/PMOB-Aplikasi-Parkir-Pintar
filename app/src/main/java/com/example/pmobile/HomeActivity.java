@@ -4,10 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,17 +36,25 @@ import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
     Button toMaps;
-
+    SearchView SearchParking;
+    ImageButton btnlogout;
+    SharedPreferences.Editor preferencesEditor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         toMaps = findViewById(R.id.buttonParkir);
         TextView username = findViewById(R.id.tampilUsername);
+        btnlogout = (ImageButton)findViewById(R.id.buttonLogout);
+        SearchParking = findViewById(R.id.Search);
+
+
+
 
         SharedPreferences mSettings = HomeActivity.this.getSharedPreferences("Settings", Context.MODE_PRIVATE);
         String name = mSettings.getString("name", "user name");
         String token = mSettings.getString("token","token");
+        preferencesEditor = mSettings.edit();
         username.setText(name);
         //cek pesanan parkir
         this.cekPesanParkir(token);
@@ -58,31 +70,41 @@ public class HomeActivity extends AppCompatActivity {
             Intent A_maps = new Intent(HomeActivity.this,MapsActivity.class);
             startActivity(A_maps);
         });
-//
-//
+
+
+        btnlogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                preferencesEditor.putString("token","false");
+                preferencesEditor.apply();
+                Intent loginscreen = new Intent(HomeActivity.this, MainActivity.class);
+                startActivity(loginscreen);
+                Toast.makeText(HomeActivity.this, "Logout Success", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
     //logut belum dibuat functionnya
-    public void logout(){
-        Toast.makeText(this,"Log Out success",Toast.LENGTH_SHORT).show();
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.menu_main,menu);
-        return true;
-    }
+//    public void logout(){
+//        Toast.makeText(this,"Log Out success",Toast.LENGTH_SHORT).show();
+//    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu){
+//        getMenuInflater().inflate(R.menu.menu_main,menu);
+//        return true;
+//    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        switch (item.getItemId()){
-            case R.id.logut:
-                logout();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item){
+//        switch (item.getItemId()){
+//            case R.id.logut:
+//                logout();
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
 
 //function cekpesanparkir
     public void cekPesanParkir(String token){

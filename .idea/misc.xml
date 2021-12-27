@@ -12,9 +12,13 @@
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/home.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/informasi_parkir.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/register.xml" value="0.25" />
-        <entry key="..\:/Users/acer/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/activity_home.xml" value="0.1046875" />
-        <entry key="..\:/Users/acer/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/activity_informasi_parkir.xml" value="0.13994565217391305" />
-        <entry key="..\:/Users/acer/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/activity_maps.xml" value="0.1046875" />
+        <entry key="..\:/Users/acer/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/activity_hasil_pencarian.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/acer/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/activity_home.xml" value="0.22" />
+        <entry key="..\:/Users/acer/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/activity_informasi_parkir.xml" value="0.33" />
+        <entry key="..\:/Users/acer/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/activity_main.xml" value="0.10916919959473151" />
+        <entry key="..\:/Users/acer/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/activity_maps.xml" value="0.16" />
+        <entry key="..\:/Users/acer/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/activity_register.xml" value="0.10916919959473151" />
+        <entry key="..\:/Users/acer/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/fragment_parkir.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/acer/AndroidStudioProjects/Pmobile/app/src/main/res/drawable/bottom_menu.xml" value="0.240625" />
         <entry key="..\:/Users/acer/AndroidStudioProjects/Pmobile/app/src/main/res/drawable/button_bg.xml" value="0.240625" />
         <entry key="..\:/Users/acer/AndroidStudioProjects/Pmobile/app/src/main/res/drawable/button_second.xml" value="0.240625" />
@@ -36,7 +40,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
