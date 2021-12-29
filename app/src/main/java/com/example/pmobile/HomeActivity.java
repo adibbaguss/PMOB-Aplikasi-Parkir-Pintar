@@ -4,11 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.SearchView;
@@ -47,6 +43,12 @@ public class HomeActivity extends AppCompatActivity {
         TextView username = findViewById(R.id.tampilUsername);
         btnlogout = (ImageButton)findViewById(R.id.buttonLogout);
         SearchParking = findViewById(R.id.Search);
+
+        //time
+        java.util.Date date=new java.util.Date();
+        TextView tgl =findViewById(R.id.tampilTanggal);
+        String [] datefinal = date.toString().split(" ");
+        tgl.setText(datefinal[0]+", "+datefinal[1]+" "+datefinal[2]+" "+datefinal[5]);
 
 
 

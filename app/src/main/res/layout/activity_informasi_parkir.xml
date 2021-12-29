@@ -30,15 +30,6 @@
             android:textColor="@color/black"
             android:textSize="12dp"
             android:layout_below="@id/tampilTempat2"/>
-
-        <ImageButton
-            android:id="@+id/buttonLogout2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:background="@color/white"
-            android:src="@drawable/ic_baseline_logout_24" />
     </RelativeLayout>
 
     <!--    akhir - menampilkan nama dan alamat lokasi-->
@@ -58,7 +49,7 @@
 
         <fragment
             android:id="@+id/map"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
+            class="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_below="@+id/textviewLokasi"
@@ -78,14 +69,14 @@
         android:orientation="vertical"
         android:paddingTop="60dp"
         android:paddingBottom="10dp">
-
         <LinearLayout
+            android:id="@+id/price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:gravity="right"
-            android:paddingHorizontal="25dp"
-            android:id="@+id/price">
+            android:orientation="horizontal"
+            android:paddingHorizontal="25dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -93,6 +84,7 @@
                 android:text="Rp. "
                 android:textColor="@color/white"
                 android:textSize="20dp" />
+
             <TextView
                 android:id="@+id/tampilHarga"
                 android:layout_width="wrap_content"
@@ -100,6 +92,7 @@
                 android:text="0000"
                 android:textColor="@color/white"
                 android:textSize="20dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -125,7 +118,7 @@
                 android:layout_height="wrap_content"
                 android:numStars="5"
                 android:rating="4.5"
-                android:stepSize="0.5"
+                android:stepSize="0.1"
                 android:theme="@style/RatingBar" />
 
             <TextView
@@ -229,18 +222,18 @@
         <!--       akhir - menampilkan slot parkir -->
 
         <!--  awal - menampilkan fasilitas -->
-        <TextView
-            android:id="@+id/Fasilitas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/Slot"
-            android:layout_marginHorizontal="25dp"
-            android:layout_marginTop="10dp"
-            android:text="Fasilitas:"
-            android:textColor="@color/white"
-            android:textSize="15dp" />
+    <TextView
+        android:id="@+id/Fasilitas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Slot"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="10dp"
+        android:text="Fasilitas:"
+        android:textColor="@color/white"
+        android:textSize="15dp" />
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/isiFasilitas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -249,47 +242,7 @@
             android:orientation="vertical"
             android:paddingLeft="30dp">
 
-            <TextView
-                android:id="@+id/fasilitasCctv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="25dp"
-                android:text="CCTV\t\t\t\t:"
-                android:textColor="@color/white"
-                android:textSize="15dp" />
-
-            <TextView
-                android:id="@+id/tampilJamCctv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="25dp"
-                android:layout_toRightOf="@+id/fasilitasCctv"
-                android:text="24 jam"
-                android:textColor="@color/white"
-                android:textSize="15dp" />
-
-            <TextView
-                android:id="@+id/fasilitasSatpam"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/fasilitasCctv"
-                android:layout_marginHorizontal="25dp"
-                android:text="Satpam\t\t:"
-                android:textColor="@color/white"
-                android:textSize="15dp" />
-
-            <TextView
-                android:id="@+id/tampilJamsatpam"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tampilJamCctv"
-                android:layout_marginHorizontal="25dp"
-                android:layout_toRightOf="@+id/fasilitasSatpam"
-                android:text="24 Jam"
-                android:textColor="@color/white"
-                android:textSize="15dp" />
-
-        </RelativeLayout>
+        </LinearLayout>
         <!--        akhir - menampilkan fasilitas-->
 
         <!--        awal - menampilkan operasional-->
@@ -329,7 +282,6 @@
             android:backgroundTint="@color/tosca"
             android:text="Pesan" />
         <!--        akhir- button pesan-->
-
     </RelativeLayout>
     <!--    akhir - menampilkan informasi parkir-->
 

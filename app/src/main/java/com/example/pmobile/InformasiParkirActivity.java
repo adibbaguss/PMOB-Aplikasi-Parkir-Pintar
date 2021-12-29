@@ -1,16 +1,14 @@
 package com.example.pmobile;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.icu.text.IDNA;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -33,69 +31,33 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InformasiParkirActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class InformasiParkirActivity extends FragmentActivity implements OnMapReadyCallback {
     private String park_id;
     private String token;
     private Double Lat;
     private Double Long;
     private String nama;
-   // private Integer slotbike,slotcar,pricecar,pricebike;
-
-
-
-    ImageButton btnlogout;
-    SharedPreferences.Editor preferencesEditor;
 
     private GoogleMap mMap;
-
-
-//    private ActivityMapsBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_informasi_parkir);
-        btnlogout = (ImageButton)findViewById(R.id.buttonLogout2);
         //get id parkir dari intent
         Bundle dataIntent  = getIntent().getExtras();
-        park_id = dataIntent.getString("park_id");
         park_id = dataIntent.getString("park_id");
 
         //get token dari sharedpreferences
         SharedPreferences mSettings = InformasiParkirActivity.this.getSharedPreferences("Settings", Context.MODE_PRIVATE);
         token = mSettings.getString("token","token");
-        preferencesEditor = mSettings.edit();
+
         //get data dari api dan set view
         this.getDetailData();
+        Lat=-7.1181109;
+        Long=112.4149811;
 
-        //maps
-
-
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().
-                findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
-
-
-
-        //logout
-
-        btnlogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                preferencesEditor.putString("token","false");
-                preferencesEditor.apply();
-                Intent loginscreen = new Intent(InformasiParkirActivity.this, MainActivity.class);
-                startActivity(loginscreen);
-                Toast.makeText(InformasiParkirActivity.this, "Logout Success", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
-
-
-
-
-
 
     //get detai data from api
     public void getDetailData(){
@@ -110,29 +72,62 @@ public class InformasiParkirActivity extends AppCompatActivity implements OnMapR
                             JSONObject jsonObject = new JSONObject(response);
                             JSONArray data = jsonObject.getJSONArray("data");
                             JSONObject dataParkir = data.getJSONObject(0);
-                            String msg = jsonObject.getString("message");
+                            //passing data to view
                             TextView namaParkir = findViewById(R.id.tampilTempat2);
                             TextView lokasiParkir = findViewById(R.id.lokasi);
+
+                            //nama tempat parkir
                             namaParkir.setText(dataParkir.getString("name"));
                             nama = dataParkir.getString("name");
+
+                            //lokasi parkir
                             lokasiParkir.setText(dataParkir.getString("location"));
 
+                            //harga parkir
+                            TextView hargaParkir = findViewById(R.id.tampilHarga);
+                            hargaParkir.setText(dataParkir.getString("car_price"));
 
-                            TextView slotCar = findViewById(R.id.tampilslotCar);
-                            slotCar.setText(dataParkir.getString("car_slot"));
+                            //bike slot
+                            TextView bikeSlot = findViewById(R.id.tampilslotBike);
+                            bikeSlot.setText(dataParkir.getString("bike_slot"));
 
+                            //car slot
+                            TextView carSlot = findViewById(R.id.tampilslotCar);
+                            carSlot.setText(dataParkir.getString("car_slot"));
 
-                            TextView slotBike = findViewById(R.id.tampilslotBike);
-                            slotBike.setText(dataParkir.getString("bike_slot"));
+                            //operasional
+                            TextView operasional = findViewById(R.id.tampilOperasional);
+                            operasional.setText(dataParkir.getString("operational"));
 
-                            TextView Operational = findViewById(R.id.tampilOperasional);
-                            Operational.setText(dataParkir.getString("operational"));
+                            //rating
+                            TextView rating = findViewById(R.id.tampilRating);
+                            rating.setText(dataParkir.getString("rating"));
+                            RatingBar ratingBar = findViewById(R.id.tampilratingBar1);
+                            ratingBar.setRating(Float.parseFloat(dataParkir.getString("rating")));
 
-                            TextView carprice = findViewById(R.id.tampilHarga);
-                            carprice.setText(dataParkir.getString("car_price"));
+                            //facilities
+                            JSONArray facilities = dataParkir.getJSONArray("facilities");
+                            LinearLayout fasilitas = findViewById(R.id.isiFasilitas);
+                            for (int i=0;i<facilities.length();i++){
+                                JSONObject childData = facilities.getJSONObject(i);
+                                //passing value
+                                TextView namaFasilitas = new TextView(InformasiParkirActivity.this);
+                                namaFasilitas.setText(childData.getString("fac_name"));
+                                namaFasilitas.setTextColor(getResources().getColor(R.color.white));
+                                TextView deskripsi = new TextView(InformasiParkirActivity.this);
+                                deskripsi.setText(childData.getString("desc"));
+                                deskripsi.setTextColor(getResources().getColor(R.color.white));
+                                fasilitas.addView(namaFasilitas);
+                                fasilitas.addView(deskripsi);
+                            }
 
+                            //update lat long
                             Lat = dataParkir.getDouble("latitude");
                             Long = dataParkir.getDouble("longitude");
+                            // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+                            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                                    .findFragmentById(R.id.map);
+                            mapFragment.getMapAsync(InformasiParkirActivity.this);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -167,10 +162,8 @@ public class InformasiParkirActivity extends AppCompatActivity implements OnMapR
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng location = new LatLng(-33.32,34.32 );
+        LatLng location = new LatLng(Lat, Long);
         mMap.addMarker(new MarkerOptions().position(location).title(nama));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
-        float zoomLevel = 16.0f; //This goes up to 21
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, zoomLevel));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location,14));
     }
 }
