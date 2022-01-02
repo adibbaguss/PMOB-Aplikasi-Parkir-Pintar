@@ -27,25 +27,34 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 public class HomeActivity extends AppCompatActivity {
+
     Button toMaps;
     SearchView SearchParking;
     ImageButton btnlogout;
     SharedPreferences.Editor preferencesEditor;
+    private String search;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_home);
         toMaps = findViewById(R.id.buttonParkir);
         TextView username = findViewById(R.id.tampilUsername);
         btnlogout = (ImageButton)findViewById(R.id.buttonLogout);
-        SearchParking = findViewById(R.id.Search);
+        SearchParking = (SearchView)findViewById(R.id.Search);
+
 
         //time
-        java.util.Date date=new java.util.Date();
+        Date date=new Date();
         TextView tgl =findViewById(R.id.tampilTanggal);
         String [] datefinal = date.toString().split(" ");
         tgl.setText(datefinal[0]+", "+datefinal[1]+" "+datefinal[2]+" "+datefinal[5]);
@@ -67,10 +76,37 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
+
         //intent ke tempat parkir atau ke maps
         toMaps.setOnClickListener(view -> {
             Intent A_maps = new Intent(HomeActivity.this,MapsActivity.class);
             startActivity(A_maps);
+        });
+
+
+
+        SearchParking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle setSearch = new Bundle();
+                String search = SearchParking.getQuery().toString().trim();
+                Intent search_a = new Intent(HomeActivity.this,HasilPencarianActivity.class);
+
+                setSearch.putString("keyword", search);
+                search_a.putExtras(setSearch);
+
+                startActivity(search_a);
+                Toast.makeText(HomeActivity.this, "Pencarian" + search, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        SearchParking.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                //your code here
+                return false;
+            }
         });
 
 
@@ -87,28 +123,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
-    //logut belum dibuat functionnya
-//    public void logout(){
-//        Toast.makeText(this,"Log Out success",Toast.LENGTH_SHORT).show();
-//    }
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu){
-//        getMenuInflater().inflate(R.menu.menu_main,menu);
-//        return true;
-//    }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item){
-//        switch (item.getItemId()){
-//            case R.id.logut:
-//                logout();
-//                return true;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
-
-//function cekpesanparkir
+    //function cekpesanparkir
     public void cekPesanParkir(String token){
         String URI = getResources().getString(R.string.DETAIL);
 
@@ -213,4 +228,5 @@ public class HomeActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
+
 }

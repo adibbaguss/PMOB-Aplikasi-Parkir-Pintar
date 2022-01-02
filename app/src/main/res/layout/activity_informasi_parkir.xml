@@ -279,6 +279,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
+            android:textColor="@color/white"
             android:backgroundTint="@color/tosca"
             android:text="Pesan" />
         <!--        akhir- button pesan-->

@@ -109,11 +109,11 @@ tools:context=".HomeActivity">
 
       <SearchView
           android:id="@+id/Search"
-          android:imeOptions="actionDone"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:queryHint="Search... "
-          android:iconifiedByDefault="false"/>
+          android:iconifiedByDefault="false"
+          android:imeOptions="actionDone"
+          android:queryHint="Search... " />
 
     </RelativeLayout>
 

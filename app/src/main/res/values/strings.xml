@@ -3,6 +3,8 @@
     <string name="register">register</string>
 
     <string name="PREF_TOKEN">00000000</string>
+
+    <string name="search_hint">00000000</string>
     <string name="title_activity_maps">MapsActivity</string>
 
     <!--route API-->
