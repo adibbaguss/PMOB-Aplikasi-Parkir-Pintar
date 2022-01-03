@@ -133,9 +133,10 @@ public class HomeActivity extends AppCompatActivity {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             JSONObject data = jsonObject.getJSONObject("data");
+                            JSONObject parkingLot = data.getJSONObject("parking_lot");
                             String msg = jsonObject.getString("message");
                             TextView lokasiParkir = findViewById(R.id.tampilLokasiParkir);
-                            lokasiParkir.setText("parkir di id parkir : "+data.getString("park_id"));
+                            lokasiParkir.setText(parkingLot.getString("name"));
 
                             //cost
                             TextView cost = findViewById(R.id.cost);
