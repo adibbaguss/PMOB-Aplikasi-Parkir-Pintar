@@ -30,7 +30,6 @@ import org.json.JSONObject;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.ResourceBundle;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -137,6 +136,19 @@ public class HomeActivity extends AppCompatActivity {
                             String msg = jsonObject.getString("message");
                             TextView lokasiParkir = findViewById(R.id.tampilLokasiParkir);
                             lokasiParkir.setText("parkir di id parkir : "+data.getString("park_id"));
+
+                            //cost
+                            TextView cost = findViewById(R.id.cost);
+                            cost.setText("Cost : Rp "+Integer.toString(data.getInt("cost")));
+
+                            //status
+                            TextView status = findViewById(R.id.status);
+                            status.setText("Status : "+data.getString("status"));
+
+                            if(data.getString("status").equals("otw")){
+                                Button btnCancel = findViewById(R.id.btnCancel);
+                                btnCancel.setVisibility(View.VISIBLE);
+                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();

@@ -78,13 +78,38 @@ tools:context=".HomeActivity">
         android:text="Jl. Alamat Parkir"
         android:textColor="@color/white" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tampilLokasiParkir"
+        android:text="Cost : "
+        android:id="@+id/cost"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cost"
+        android:id="@+id/status"
+        android:text="Status : "
+        android:textColor="@color/white"/>
+
     <Button
         android:id="@+id/buttonParkir"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tampilLokasiParkir"
+        android:layout_below="@+id/status"
         android:backgroundTint="@color/tosca"
         android:text="PERGI KE LOKASI" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Batal"
+        android:id="@+id/btnCancel"
+        android:layout_below="@+id/buttonParkir"
+        android:backgroundTint="@color/tosca"
+        android:visibility="gone"/>
   </RelativeLayout>
 
   <RelativeLayout
