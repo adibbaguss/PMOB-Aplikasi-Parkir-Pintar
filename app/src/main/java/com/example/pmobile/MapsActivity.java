@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -193,11 +194,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-
+    //menuju lokasi saat ini
+    final Context context = this;
     @Override
     public boolean onMyLocationButtonClick() {
-        Toast.makeText(this, "My Location Button Clicked", Toast.LENGTH_SHORT).show();
-        return true;
+        LocationManager mgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (!mgr.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            Toast.makeText(context, "GPS is disabled!", Toast.LENGTH_SHORT).show();
+        }
+        return false;
     }
 
     @Override
