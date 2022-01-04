@@ -1,12 +1,30 @@
 package com.example.pmobile;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
+import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -15,14 +33,40 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.pmobile.databinding.ActivityMapsBinding;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback , GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener{
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
+    private String park_id;
+    private String token;
+    private Double Lat;
+    private Double Long;
+    private String nama;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        //get id parkir dari intent
+        Bundle dataIntent  = getIntent().getExtras();
+        park_id = dataIntent.getString("id_parkir");
+
+        //get token dari sharedpreferences
+        SharedPreferences mSettings = MapsActivity.this.getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        token = mSettings.getString("token","token");
+
+        //get data dari api dan set view
+        this.getDetailParkir();
+        Lat=-7.1181109;
+        Long=112.4149811;
 
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -33,30 +77,70 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
     }
 
+    private void getDetailParkir() {
+        String URI = getResources().getString(R.string.PARK_DETAIL);
+        URI+=park_id;
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET,URI,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            JSONArray data = jsonObject.getJSONArray("data");
+                            JSONObject dataParkir = data.getJSONObject(0);
+                            //passing data to view
+                            TextView namaParkir = findViewById(R.id.tampilTempat1);
+                            TextView lokasiParkir = findViewById(R.id.tampilAlamat);
+
+                            //nama tempat parkir
+                            namaParkir.setText(dataParkir.getString("name"));
+                            nama = dataParkir.getString("name");
+
+
+                            //lokasi parkir
+                            lokasiParkir.setText(dataParkir.getString("location"));
 
 
 
 
-    //logut belum dibuat functionnya
-    public void logout(){
-        Toast.makeText(this,"Log Out success",Toast.LENGTH_SHORT).show();
+                            //update lat long
+                            Lat = dataParkir.getDouble("latitude");
+                            Long = dataParkir.getDouble("longitude");
+                            // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+                            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                                    .findFragmentById(R.id.map);
+                            mapFragment.getMapAsync(MapsActivity.this);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(MapsActivity.this, "get data Error!" + e.toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //error respon
+                    }
+                })
+
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headerMap = new HashMap<String, String>();
+                headerMap.put("Content-Type", "application/json");
+                headerMap.put("Authorization", "Bearer " + token);
+                return headerMap;
+            }
+
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.menu_main,menu);
-        return true;
-    }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item){
-//        switch (item.getItemId()){
-//            case R.id.logut:
-//                logout();
-//                return true;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
+
 
     /**
      * Manipulates the map once available.
@@ -72,8 +156,52 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-7.808570, 110.388931);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in UAD kampus Tercinta :)"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng location = new LatLng(Lat, Long);
+        mMap.addMarker(new MarkerOptions().position(location).title("Parking in "+nama));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location,14));
+
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                    && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION
+                        , Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+            } else {
+                mMap.setMyLocationEnabled(true);
+            }
+        } else {
+            mMap.setMyLocationEnabled(true);
+        }
+
+        mMap.setOnMyLocationButtonClickListener(this);
+        mMap.setOnMyLocationClickListener(this);
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 1) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                        && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    mMap.setMyLocationEnabled(true);
+                }
+            } else {
+                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+
+    @Override
+    public boolean onMyLocationButtonClick() {
+        Toast.makeText(this, "My Location Button Clicked", Toast.LENGTH_SHORT).show();
+        return true;
+    }
+
+    @Override
+    public void onMyLocationClick(@NonNull Location location) {
+        Toast.makeText(this, "Lokasiku saat ini : " + location, Toast.LENGTH_LONG).show();
     }
 }

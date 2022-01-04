@@ -33,11 +33,11 @@ import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
 
-    Button toMaps;
+    private Button toMaps;
     SearchView SearchParking;
     ImageButton btnlogout;
     SharedPreferences.Editor preferencesEditor;
-    private String search;
+    private String id_parkir;
 
 
 
@@ -76,11 +76,6 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-        //intent ke tempat parkir atau ke maps
-        toMaps.setOnClickListener(view -> {
-            Intent A_maps = new Intent(HomeActivity.this,MapsActivity.class);
-            startActivity(A_maps);
-        });
 
 
 
@@ -119,6 +114,8 @@ public class HomeActivity extends AppCompatActivity {
                 Toast.makeText(HomeActivity.this, "Logout Success", Toast.LENGTH_SHORT).show();
             }
         });
+
+
     }
 
 
@@ -146,11 +143,14 @@ public class HomeActivity extends AppCompatActivity {
                             TextView status = findViewById(R.id.status);
                             status.setText("Status : "+data.getString("status"));
 
+
+
                             if(data.getString("status").equals("otw")){
                                 Button btnCancel = findViewById(R.id.btnCancel);
                                 btnCancel.setVisibility(View.VISIBLE);
                             }
-
+                            //mengambil id_parkir
+                            id_parkir = data.getString("park_id");
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(HomeActivity.this, "get data Error!" + e.toString(), Toast.LENGTH_SHORT).show();
@@ -180,7 +180,26 @@ public class HomeActivity extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
+
+        // intent ke MapsActivity
+        toMaps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //intent ke tempat parkir atau ke maps
+                    Bundle setLoc = new Bundle();
+                    Intent A_maps = new Intent(HomeActivity.this,MapsActivity.class);
+
+                    setLoc.putString("id_parkir", id_parkir);
+                    A_maps.putExtras(setLoc);
+
+                    Toast.makeText(HomeActivity.this, "Locatioan ID = " + id_parkir, Toast.LENGTH_SHORT).show();
+
+                    startActivity(A_maps);
+            }
+        });
     }
+
+
 
 
 

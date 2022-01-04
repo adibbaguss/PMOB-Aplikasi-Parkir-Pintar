@@ -31,7 +31,6 @@ import java.util.Map;
 public class HasilPencarianActivity extends AppCompatActivity {
     String keyword;
     String token;
-    ImageButton btnlogout;
     SharedPreferences.Editor preferencesEditor;
 
 
@@ -52,18 +51,6 @@ public class HasilPencarianActivity extends AppCompatActivity {
 //
         this.getHasilPencarian();
 
-
-        //logout
-//        btnlogout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                preferencesEditor.putString("token","false");
-//                preferencesEditor.apply();
-//                Intent loginscreen = new Intent(HasilPencarianActivity.this, MainActivity.class);
-//                startActivity(loginscreen);
-//                Toast.makeText(HasilPencarianActivity.this, "Logout Success", Toast.LENGTH_SHORT).show();
-//            }
-//        });
 
 
     }

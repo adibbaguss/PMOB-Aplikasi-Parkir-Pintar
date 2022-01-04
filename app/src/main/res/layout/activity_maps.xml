@@ -57,7 +57,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tampilAlamat1"
+            android:id="@+id/tampilAlamat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Jl. Brigjend Katamso 75-77, Yogyakarta, Indonesia"

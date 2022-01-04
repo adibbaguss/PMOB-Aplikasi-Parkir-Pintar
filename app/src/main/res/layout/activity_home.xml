@@ -79,20 +79,20 @@ tools:context=".HomeActivity">
         android:textColor="@color/white" />
 
     <TextView
+        android:id="@+id/cost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tampilLokasiParkir"
         android:text="Cost : "
-        android:id="@+id/cost"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white" />
 
     <TextView
+        android:id="@+id/status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/cost"
-        android:id="@+id/status"
         android:text="Status : "
-        android:textColor="@color/white"/>
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/buttonParkir"
@@ -103,13 +103,16 @@ tools:context=".HomeActivity">
         android:text="PERGI KE LOKASI" />
 
     <Button
+        android:layout_marginTop="3dp"
+        android:id="@+id/btnCancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Batal"
-        android:id="@+id/btnCancel"
         android:layout_below="@+id/buttonParkir"
-        android:backgroundTint="@color/tosca"
-        android:visibility="gone"/>
+        android:background="@drawable/button_cancel"
+        android:text="Batal"
+        android:textColor="@color/tosca"
+        android:visibility="gone"
+        />
   </RelativeLayout>
 
   <RelativeLayout
