@@ -145,11 +145,16 @@ public class HomeActivity extends AppCompatActivity {
 
                             //cost
                             TextView cost = findViewById(R.id.cost);
+                            cost.setVisibility(View.VISIBLE);
                             cost.setText("Cost : Rp "+Integer.toString(data.getInt("cost")));
 
                             //status
                             TextView status = findViewById(R.id.status);
+                            status.setVisibility(View.VISIBLE);
                             status.setText("Status : "+data.getString("status"));
+
+                            //tomaps button
+                            toMaps.setVisibility(View.VISIBLE);
 
 
 
@@ -179,6 +184,10 @@ public class HomeActivity extends AppCompatActivity {
                         //status
                         TextView status = findViewById(R.id.status);
                         status.setVisibility(View.GONE);
+
+                        //button batal parkir
+                        Button btnCancel = findViewById(R.id.btnCancel);
+                        btnCancel.setVisibility(View.GONE);
                     }
                 })
 
