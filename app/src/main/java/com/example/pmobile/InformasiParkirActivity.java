@@ -18,6 +18,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -73,7 +74,7 @@ public class InformasiParkirActivity extends FragmentActivity implements OnMapRe
             }else{
                 type = "car";
             }
-            System.out.println(type);
+            this.pesanParkir();
         });
     }
 
@@ -183,5 +184,37 @@ public class InformasiParkirActivity extends FragmentActivity implements OnMapRe
         LatLng location = new LatLng(Lat, Long);
         mMap.addMarker(new MarkerOptions().position(location).title(nama));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location,14));
+    }
+
+    //function pesan parkir
+    public void pesanParkir(){
+
+        String URI = getResources().getString(R.string.PESAN);
+        JSONObject parameters = new JSONObject();
+        try {
+            parameters.put("park_id",this.park_id);
+            parameters.put("type",this.type);
+        } catch (Exception e) {
+        }
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, URI, parameters,new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                System.out.println("berhasil");
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("gagal");
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Authorization", "Bearer " + token);
+                return headers;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(request);
     }
 }
