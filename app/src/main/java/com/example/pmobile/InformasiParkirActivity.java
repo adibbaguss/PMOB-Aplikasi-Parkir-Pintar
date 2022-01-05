@@ -3,7 +3,10 @@ package com.example.pmobile;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +40,7 @@ public class InformasiParkirActivity extends FragmentActivity implements OnMapRe
     private Double Lat;
     private Double Long;
     private String nama;
+    private String type;
 
     private GoogleMap mMap;
 
@@ -57,6 +61,20 @@ public class InformasiParkirActivity extends FragmentActivity implements OnMapRe
         Lat=-7.1181109;
         Long=112.4149811;
 
+        //event listener btn pesan
+        Button btnPesan = findViewById(R.id.buttonPesan);
+        btnPesan.setOnClickListener(view -> {
+            //cek seleted radio button
+            RadioGroup radioGroup = findViewById(R.id.radioGroupParkir);
+            int idRadio = radioGroup.getCheckedRadioButtonId();
+            RadioButton seletedRadio = findViewById(idRadio);
+            if (seletedRadio.getText().equals("Parkir Motor")){
+                type = "bike";
+            }else{
+                type = "car";
+            }
+            System.out.println(type);
+        });
     }
 
     //get detai data from api

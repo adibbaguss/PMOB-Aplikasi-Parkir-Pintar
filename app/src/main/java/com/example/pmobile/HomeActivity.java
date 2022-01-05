@@ -36,6 +36,7 @@ public class HomeActivity extends AppCompatActivity {
     private Button toMaps;
     SearchView SearchParking;
     ImageButton btnlogout;
+    String token;
     SharedPreferences.Editor preferencesEditor;
     private String id_parkir;
 
@@ -63,7 +64,7 @@ public class HomeActivity extends AppCompatActivity {
 
         SharedPreferences mSettings = HomeActivity.this.getSharedPreferences("Settings", Context.MODE_PRIVATE);
         String name = mSettings.getString("name", "user name");
-        String token = mSettings.getString("token","token");
+        token = mSettings.getString("token","token");
         preferencesEditor = mSettings.edit();
         username.setText(name);
         //cek pesanan parkir

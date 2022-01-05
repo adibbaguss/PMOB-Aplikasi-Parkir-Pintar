@@ -147,6 +147,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:text="Parkir Motor"
+                android:checked="true"
                 android:textColor="@color/white"
                 android:textSize="14dp" />
 
