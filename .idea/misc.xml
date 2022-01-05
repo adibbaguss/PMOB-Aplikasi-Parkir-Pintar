@@ -4,7 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/activity_hasil_pencarian.xml" value="0.2" />
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/activity_home.xml" value="0.16" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/activity_home.xml" value="0.22" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/activity_informasi_parkir.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/activity_main.xml" value="0.1793478260869565" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/activity_maps.xml" value="0.21" />
@@ -13,14 +13,8 @@
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/home.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/informasi_parkir.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/register.xml" value="0.25" />
-        <entry key="..\:/Users/acer/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/drawable/button_cancel.xml" value="0.19537037037037036" />
-        <entry key="..\:/Users/acer/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/drawable/button_second.xml" value="0.19537037037037036" />
-        <entry key="..\:/Users/acer/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/drawable/header_login.xml" value="0.19537037037037036" />
-        <entry key="..\:/Users/acer/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/drawable/input_text_non_stroke.xml" value="0.19537037037037036" />
-        <entry key="..\:/Users/acer/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/drawable/menu_parkir.xml" value="0.19537037037037036" />
-        <entry key="..\:/Users/acer/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/drawable/rouded_corner_semi_black.xml" value="0.19537037037037036" />
         <entry key="..\:/Users/acer/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/activity_hasil_pencarian.xml" value="0.22447916666666667" />
-        <entry key="..\:/Users/acer/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/activity_home.xml" value="0.33" />
+        <entry key="..\:/Users/acer/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/activity_home.xml" value="0.22" />
         <entry key="..\:/Users/acer/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/activity_informasi_parkir.xml" value="0.33" />
         <entry key="..\:/Users/acer/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/activity_main.xml" value="0.10916919959473151" />
         <entry key="..\:/Users/acer/AndroidStudioProjects/PMOB-Aplikasi-Parkir-Pintar/app/src/main/res/layout/activity_maps.xml" value="0.16" />

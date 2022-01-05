@@ -81,6 +81,11 @@ public class HomeActivity extends AppCompatActivity {
             this.cekPesanParkir(token);
         });
 
+        //event listener refresh button
+        Button refresh = findViewById(R.id.refresh);
+        refresh.setOnClickListener(view -> {
+            this.cekPesanParkir(token);
+        });
 
 
 
@@ -142,10 +147,15 @@ public class HomeActivity extends AppCompatActivity {
                             TextView lokasiParkir = findViewById(R.id.tampilLokasiParkir);
                             lokasiParkir.setText(parkingLot.getString("name"));
 
+                            //parking id
+                            TextView parkID = findViewById(R.id.park_id);
+                            parkID.setVisibility(View.VISIBLE);
+                            parkID.setText("Parking ID : "+Integer.toString(data.getInt("userpark_id")));
+
                             //cost
                             TextView cost = findViewById(R.id.cost);
                             cost.setVisibility(View.VISIBLE);
-                            cost.setText("Cost : Rp "+Integer.toString(data.getInt("cost")));
+                            cost.setText("Cost : Rp "+Integer.toString(data.getInt("cost"))+" /Jam");
 
                             //status
                             TextView status = findViewById(R.id.status);
@@ -160,6 +170,16 @@ public class HomeActivity extends AppCompatActivity {
                             if(data.getString("status").equals("otw")){
                                 Button btnCancel = findViewById(R.id.btnCancel);
                                 btnCancel.setVisibility(View.VISIBLE);
+
+                                TextView checkin = findViewById(R.id.checkinTime);
+                                checkin.setVisibility(View.GONE);
+                            }else{
+                                Button btnCanel = findViewById(R.id.btnCancel);
+                                btnCanel.setVisibility(View.GONE);
+
+                                TextView checkin = findViewById(R.id.checkinTime);
+                                checkin.setVisibility(View.VISIBLE);
+                                checkin.setText("Checkin Time : "+data.getString("checkin_time"));
                             }
                             //mengambil id_parkir
                             id_parkir = data.getString("park_id");
@@ -176,6 +196,11 @@ public class HomeActivity extends AppCompatActivity {
                         lokasiParkir.setText("User Belum Memesan Parkir");
                         Button keParkir = findViewById(R.id.buttonParkir);
                         keParkir.setVisibility(View.GONE);
+
+                        //parkingID
+                        TextView parkID =findViewById(R.id.park_id);
+                        parkID.setVisibility(View.GONE);
+
                         //cost
                         TextView cost = findViewById(R.id.cost);
                         cost.setVisibility(View.GONE);
@@ -187,6 +212,10 @@ public class HomeActivity extends AppCompatActivity {
                         //button batal parkir
                         Button btnCancel = findViewById(R.id.btnCancel);
                         btnCancel.setVisibility(View.GONE);
+
+                        //checkin time
+                        TextView checkin = findViewById(R.id.checkinTime);
+                        checkin.setVisibility(View.GONE);
                     }
                 })
 
