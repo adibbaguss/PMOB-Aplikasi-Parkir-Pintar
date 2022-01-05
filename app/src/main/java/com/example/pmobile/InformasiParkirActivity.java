@@ -1,6 +1,7 @@
 package com.example.pmobile;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
@@ -199,12 +200,18 @@ public class InformasiParkirActivity extends FragmentActivity implements OnMapRe
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, URI, parameters,new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                System.out.println("berhasil");
+                Toast.makeText(InformasiParkirActivity.this, "Silahkan Datang ke Lokasi dalam 1 jam", Toast.LENGTH_SHORT).show();
+                Intent toMaps = new Intent(InformasiParkirActivity.this,MapsActivity.class);
+                Bundle data=new Bundle();
+                data.putString("id_parkir",park_id);
+                toMaps.putExtras(data);
+                startActivity(toMaps);
+                finish();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                System.out.println("gagal");
+                Toast.makeText(InformasiParkirActivity.this, "User Sudah memesan Parkir!", Toast.LENGTH_SHORT).show();
             }
         }) {
             @Override
