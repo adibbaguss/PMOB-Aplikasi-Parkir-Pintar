@@ -73,6 +73,13 @@ public class HomeActivity extends AppCompatActivity {
         this.getRekomParkir(token);
 
 
+        //event listener button batal parkir
+        Button btnCancel = findViewById(R.id.btnCancel);
+        btnCancel.setOnClickListener(view -> {
+            this.batalParkir(token);
+            finish();
+            startActivity(getIntent());
+        });
 
 
 
@@ -163,7 +170,14 @@ public class HomeActivity extends AppCompatActivity {
                         TextView lokasiParkir = findViewById(R.id.tampilLokasiParkir);
                         lokasiParkir.setText("User Belum Memesan Parkir");
                         Button keParkir = findViewById(R.id.buttonParkir);
-                        keParkir.setVisibility(View.INVISIBLE);
+                        keParkir.setVisibility(View.GONE);
+                        //cost
+                        TextView cost = findViewById(R.id.cost);
+                        cost.setVisibility(View.GONE);
+
+                        //status
+                        TextView status = findViewById(R.id.status);
+                        status.setVisibility(View.GONE);
                     }
                 })
 
@@ -243,6 +257,48 @@ public class HomeActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         TextView noDataRekom = findViewById(R.id.textviewLokasiTerdekat);
                         noDataRekom.setText("rekomendasi tidak ada");
+                    }
+                })
+
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headerMap = new HashMap<String, String>();
+                headerMap.put("Content-Type", "application/json");
+                headerMap.put("Authorization", "Bearer " + token);
+                return headerMap;
+            }
+
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+
+    //function batal pesan parkir
+    public void batalParkir(String token){
+        String URI = getResources().getString(R.string.BATAL);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET,URI,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+//                            JSONArray data = jsonObject.getJSONArray("data");
+                            String msg = jsonObject.getString("message");
+                            //ok respon
+                            Toast.makeText(HomeActivity.this,""+msg, Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(HomeActivity.this, "get data Error!" + e.toString(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        System.out.println("api error");
                     }
                 })
 
