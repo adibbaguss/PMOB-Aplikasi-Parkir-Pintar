@@ -318,4 +318,11 @@ public class HomeActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
+
+    //update data ketika kembali ke activity ini
+    @Override
+    public void onResume(){
+        super.onResume();
+        this.cekPesanParkir(token);
+    }
 }
