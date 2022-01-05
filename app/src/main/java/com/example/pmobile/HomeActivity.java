@@ -78,8 +78,7 @@ public class HomeActivity extends AppCompatActivity {
         Button btnCancel = findViewById(R.id.btnCancel);
         btnCancel.setOnClickListener(view -> {
             this.batalParkir(token);
-            finish();
-            startActivity(getIntent());
+            this.cekPesanParkir(token);
         });
 
 
