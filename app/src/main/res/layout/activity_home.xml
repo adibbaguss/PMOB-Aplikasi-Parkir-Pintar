@@ -79,18 +79,26 @@ tools:context=".HomeActivity">
         android:textColor="@color/white" />
 
     <TextView
+        android:id="@+id/park_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/park_id"
-        android:textColor="@color/white"
         android:layout_below="@+id/tampilLokasiParkir"
-        android:text="Parking ID : "/>
+        android:text="Parking ID : "
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/tipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/park_id"
+        android:text="Tipe : "
+        android:textColor="@color/white" />
 
     <TextView
         android:id="@+id/cost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/park_id"
+        android:layout_below="@+id/tipe"
         android:text="Cost : "
         android:textColor="@color/white" />
 
@@ -103,12 +111,12 @@ tools:context=".HomeActivity">
         android:textColor="@color/white" />
 
     <TextView
+        android:id="@+id/checkinTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/checkinTime"
+        android:layout_below="@+id/status"
         android:text="checkin time : "
-        android:textColor="@color/white"
-        android:layout_below="@+id/status"/>
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/buttonParkir"
@@ -119,22 +127,30 @@ tools:context=".HomeActivity">
         android:text="PERGI KE LOKASI" />
 
     <Button
-        android:layout_marginTop="3dp"
         android:id="@+id/btnCancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/buttonParkir"
+        android:layout_marginTop="3dp"
         android:background="@drawable/button_cancel"
         android:text="Batal"
         android:textColor="@color/tosca"
-        android:visibility="gone"
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <ImageButton
         android:id="@+id/refresh"
-        android:text="Refresh"
-        android:layout_below="@+id/btnCancel"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/refresh_button" />
+
+    <!--    <Button-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:id="@+id/refresh"-->
+    <!--        android:text="Refresh"-->
+    <!--        android:layout_below="@+id/btnCancel"/>-->
   </RelativeLayout>
 
   <RelativeLayout

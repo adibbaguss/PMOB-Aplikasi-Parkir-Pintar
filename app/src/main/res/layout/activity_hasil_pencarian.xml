@@ -7,9 +7,6 @@
     android:orientation="vertical"
     tools:context=".HasilPencarianActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
         <TextView
             android:id="@+id/textviewListPencarian"
             android:layout_width="wrap_content"
@@ -21,27 +18,33 @@
             android:paddingRight="15dp"
             android:textColor="@color/white"
             android:textSize="15dp" />
-        <ImageButton
-            android:id="@+id/buttonLogout"
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp">
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="25dp"
-            android:background="@color/white"
-            android:src="@drawable/ic_baseline_logout_24"
-            android:layout_marginTop="20dp"/>
-    </RelativeLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:layout_gravity="center_vertical"
-        android:id="@+id/getsearch"
-        android:text="coba"
-        />
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            android:layout_gravity="center_vertical"
+            android:text="Hasil Pencarian : "
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/getsearch"
+            android:text="hasil"
+            />
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"

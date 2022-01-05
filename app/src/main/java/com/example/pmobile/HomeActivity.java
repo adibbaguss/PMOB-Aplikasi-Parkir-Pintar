@@ -82,7 +82,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         //event listener refresh button
-        Button refresh = findViewById(R.id.refresh);
+        ImageButton refresh = findViewById(R.id.refresh);
         refresh.setOnClickListener(view -> {
             this.cekPesanParkir(token);
         });
@@ -152,6 +152,12 @@ public class HomeActivity extends AppCompatActivity {
                             parkID.setVisibility(View.VISIBLE);
                             parkID.setText("Parking ID : "+Integer.toString(data.getInt("userpark_id")));
 
+
+                            //tipe
+                            TextView tipe = findViewById(R.id.tipe);
+                            tipe.setVisibility(View.VISIBLE);
+                            tipe.setText("Tipe : " + data.getString("type"));
+
                             //cost
                             TextView cost = findViewById(R.id.cost);
                             cost.setVisibility(View.VISIBLE);
@@ -200,6 +206,11 @@ public class HomeActivity extends AppCompatActivity {
                         //parkingID
                         TextView parkID =findViewById(R.id.park_id);
                         parkID.setVisibility(View.GONE);
+
+                        //tipe
+                        TextView tipe = findViewById(R.id.tipe);
+                        tipe.setVisibility(View.GONE);
+
 
                         //cost
                         TextView cost = findViewById(R.id.cost);
