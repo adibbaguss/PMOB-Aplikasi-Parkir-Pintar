@@ -37,6 +37,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class InformasiParkirActivity extends FragmentActivity implements OnMapReadyCallback {
+// mendelrasikan variabel
     private String park_id;
     private String token;
     private Double Lat;
@@ -181,15 +182,17 @@ public class InformasiParkirActivity extends FragmentActivity implements OnMapRe
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
+        // Add a marker
         LatLng location = new LatLng(Lat, Long);
+        // menambahkan title pada marker
         mMap.addMarker(new MarkerOptions().position(location).title(nama));
+        // zoom maps
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location,14));
     }
 
     //function pesan parkir
     public void pesanParkir(){
-
+        //memanggil API
         String URI = getResources().getString(R.string.PESAN);
         JSONObject parameters = new JSONObject();
         try {

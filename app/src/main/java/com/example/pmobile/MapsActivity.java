@@ -39,6 +39,7 @@ import java.util.Map;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener{
 
+    // deklarasi variabel
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
     private String park_id;
@@ -74,6 +75,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
     }
 
+    // function mengambil detail parkir
     private void getDetailParkir() {
         String URI = getResources().getString(R.string.PARK_DETAIL);
         URI+=park_id;
@@ -152,14 +154,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
+        // Add a marker
         LatLng location = new LatLng(Lat, Long);
+        // menambahkan nama lokasi pada marker
         mMap.addMarker(new MarkerOptions().position(location).title(nama));
+        // zoom maps
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location,14));
 
+      //perkondisian pengecekan apakah izin akses maps sudah diaktifkan
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            // kondisi ketika akses belum diberikan
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                     && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+                // data  disimpan dan diteruskan pada requestPermission
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION
                         , Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
             } else {
@@ -174,6 +182,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
+    // meminta ijin untuk mengakses GPS hp
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -195,6 +204,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public boolean onMyLocationButtonClick() {
         LocationManager mgr = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        // kondisi ketika GPS belum diaktifkan
         if (!mgr.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             Toast.makeText(context, "GPS is disabled!", Toast.LENGTH_SHORT).show();
         }

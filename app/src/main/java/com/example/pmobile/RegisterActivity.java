@@ -26,7 +26,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
+    // memanggil api
     private static String URL_REGISTER = "https://apismartparking.000webhostapp.com/api/register";
+    // deklari variabel yang akan digunakan
     private Button AfterRegister;
     private ProgressBar loading;
     private EditText editTextNama, editTextUsername, editTextEmail, editTextPass,editTextConfPass, editTextPhone;
@@ -35,6 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        // menghubungkan variabel dengan id yang ada pada xml
         AfterRegister = (Button) findViewById(R.id.buttonRegister);
         editTextNama = (EditText) findViewById(R.id.isiNama);
         editTextUsername = (EditText) findViewById(R.id.isiUsername);
@@ -45,10 +48,12 @@ public class RegisterActivity extends AppCompatActivity {
         loading = (ProgressBar)findViewById(R.id.Progress);
         loading.setVisibility(View.INVISIBLE);
 
+        // ketika mengklik button Register
         AfterRegister.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+                // menerima inputan pada form
                 String nama = editTextNama.getText().toString().trim();
                 String username = editTextUsername.getText().toString().trim();
                 String email = editTextEmail.getText().toString().trim();
@@ -56,10 +61,13 @@ public class RegisterActivity extends AppCompatActivity {
                 String c_password = editTextConfPass.getText().toString().trim();
                 String phone = editTextPhone.getText().toString().trim();
 
+                // kondisi ketika semua inputan tidak kosong
                 if(!nama.isEmpty() && !username.isEmpty() && !email.isEmpty() && !password.isEmpty() && !c_password.isEmpty() && !phone.isEmpty()){
+                    // kondisi pencocokan password dan konfirmasi password
                     if(password.equals(c_password)) Register();
                     else editTextConfPass.setError("Konfirmasi password salah");
                 }else{
+                    //ketika kondisi inputan ada yang kosong
                     editTextNama.setError("Masukkan nama !");
                     editTextUsername.setError("Masukkan username !");
                     editTextEmail.setError("Masukkan email !");
@@ -74,9 +82,11 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    // function register
     private void Register() {
         loading.setVisibility(View.VISIBLE);
         AfterRegister.setVisibility(View.GONE);
+        // meneriama semua inputan pada form dan disimpan di variabel baru
         final String nama = this.editTextNama.getText().toString().trim();
         final String username = this.editTextUsername.getText().toString().trim();
         final String email = this.editTextEmail.getText().toString().trim();
@@ -89,11 +99,13 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         try {
+                            // parsing data pada json
                             JSONObject jsonObject = new JSONObject(response);
                             Boolean success= jsonObject.getBoolean("success");
                             JSONObject data = jsonObject.getJSONObject("data");
                             String token = data.getString("token");
                             String msg = jsonObject.getString("message");
+                            // ketika kondisi success = true
                             if(success) {
                                 Toast.makeText(RegisterActivity.this, "Register Sukses", Toast.LENGTH_SHORT).show();
 
@@ -103,11 +115,13 @@ public class RegisterActivity extends AppCompatActivity {
                                 loading.setVisibility(View.GONE);
                                 AfterRegister.setVisibility(View.VISIBLE);
                             } else {
+                                // konsdisi success = false
                                 Toast.makeText(RegisterActivity.this, "Gagal Register!" + msg, Toast.LENGTH_SHORT).show();
                                 loading.setVisibility(View.GONE);
                                 AfterRegister.setVisibility(View.VISIBLE);
                             }
                         } catch (JSONException e) {
+                            // parsing data ada yang salah
                             e.printStackTrace();
                             Toast.makeText(RegisterActivity.this, "Register Error!" + e.toString(), Toast.LENGTH_SHORT).show();
                             loading.setVisibility(View.GONE);
@@ -115,6 +129,7 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     }
                 },
+                // respon error
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
@@ -126,6 +141,7 @@ public class RegisterActivity extends AppCompatActivity {
                 })
 
         {
+            // parameter menginputkan data
             @Override
             protected Map<String,String> getParams() throws AuthFailureError{
                 Map<String, String> params = new HashMap<>();

@@ -33,6 +33,7 @@ import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
 
+//    deklarasi variabel
     private Button toMaps;
     SearchView SearchParking;
     ImageButton btnlogout;
@@ -45,15 +46,16 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_home);
+
+        // menghubungkan variabel dengan id yang ada pada xml
         toMaps = findViewById(R.id.buttonParkir);
         TextView username = findViewById(R.id.tampilUsername);
         btnlogout = (ImageButton)findViewById(R.id.buttonLogout);
         SearchParking = (SearchView)findViewById(R.id.Search);
 
 
-        //time
+        // waktu
         Date date=new Date();
         TextView tgl =findViewById(R.id.tampilTanggal);
         String [] datefinal = date.toString().split(" ");
@@ -61,10 +63,13 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-
+//        set preferenfaces yang hanya bisa diakses pada class
         SharedPreferences mSettings = HomeActivity.this.getSharedPreferences("Settings", Context.MODE_PRIVATE);
+//        mengambil string dengan key name, jika gagal akan menampikan default user name
         String name = mSettings.getString("name", "user name");
+//        mengambil string dengan key token, jika gagal akan menampikan default token
         token = mSettings.getString("token","token");
+//        edit pada preferences
         preferencesEditor = mSettings.edit();
         username.setText(name);
         //cek pesanan parkir
@@ -90,14 +95,16 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-
+// pencarian parkir
         SearchParking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // mengambil query yang diinputkan
                 Bundle setSearch = new Bundle();
                 String search = SearchParking.getQuery().toString().trim();
-                Intent search_a = new Intent(HomeActivity.this,HasilPencarianActivity.class);
 
+                Intent search_a = new Intent(HomeActivity.this,HasilPencarianActivity.class);
+                // mengirimkan inputan degan key = keyword
                 setSearch.putString("keyword", search);
                 search_a.putExtras(setSearch);
 
@@ -106,7 +113,7 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
-
+        // ketika tidak jadi melakukan pencarian
         SearchParking.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
@@ -115,7 +122,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-
+        // melakukan logout
         btnlogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,11 +146,15 @@ public class HomeActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+
                         try {
+                            // melakukan parsing data pada json
                             JSONObject jsonObject = new JSONObject(response);
                             JSONObject data = jsonObject.getJSONObject("data");
                             JSONObject parkingLot = data.getJSONObject("parking_lot");
                             String msg = jsonObject.getString("message");
+
+                            // menampilakan lokasi parkir
                             TextView lokasiParkir = findViewById(R.id.tampilLokasiParkir);
                             lokasiParkir.setText(parkingLot.getString("name"));
 
@@ -172,7 +183,7 @@ public class HomeActivity extends AppCompatActivity {
                             toMaps.setVisibility(View.VISIBLE);
 
 
-
+                            // kondisi ketika otw / sedang menuju ke tempat parkir
                             if(data.getString("status").equals("otw")){
                                 Button btnCancel = findViewById(R.id.btnCancel);
                                 btnCancel.setVisibility(View.VISIBLE);
@@ -180,6 +191,7 @@ public class HomeActivity extends AppCompatActivity {
                                 TextView checkin = findViewById(R.id.checkinTime);
                                 checkin.setVisibility(View.GONE);
                             }else{
+                                // kondisi ketika status != otw
                                 Button btnCanel = findViewById(R.id.btnCancel);
                                 btnCanel.setVisibility(View.GONE);
 
@@ -190,11 +202,13 @@ public class HomeActivity extends AppCompatActivity {
                             //mengambil id_parkir
                             id_parkir = data.getString("park_id");
                         } catch (JSONException e) {
+                            // ketika parsing data json gagal
                             e.printStackTrace();
                             Toast.makeText(HomeActivity.this, "get data Error!" + e.toString(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
+                // ketiak response error
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
@@ -241,6 +255,7 @@ public class HomeActivity extends AppCompatActivity {
 
         };
 
+        // request antrian dengan volley dan menambahkan stringRequest
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
 
@@ -334,7 +349,7 @@ public class HomeActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-//                            JSONArray data = jsonObject.getJSONArray("data");
+                            //  JSONArray data = jsonObject.getJSONArray("data");
                             String msg = jsonObject.getString("message");
                             //ok respon
                             Toast.makeText(HomeActivity.this,""+msg, Toast.LENGTH_SHORT).show();
@@ -361,7 +376,7 @@ public class HomeActivity extends AppCompatActivity {
             }
 
         };
-
+        // meminta antrian dengan volley
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }

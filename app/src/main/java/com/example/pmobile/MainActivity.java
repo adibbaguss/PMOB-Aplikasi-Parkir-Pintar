@@ -28,9 +28,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+//    deklarasi variabel
     private Button toRegister,AfterLogin;
     private EditText editText_email, editText_password;
     private ProgressBar loading;
+
+//  memanggil API
     private static String URL_LOGIN = "https://apismartparking.000webhostapp.com/api/login";
 
 
@@ -41,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         System.out.println("onCreate");
 
+//        menghubungkan variabel dengan id pada xml
         editText_email = (EditText)findViewById(R.id.inputEmail);
         editText_password = (EditText)findViewById(R.id.inputPassword);
         AfterLogin = (Button)findViewById(R.id.buttonLogin);
@@ -85,9 +90,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         System.out.println("onDestroy");
     }
 
-
+//perkondisian ketika klik button
     @Override
     public void onClick(View v) {
+// ketika kondisi klik login
         if(v == AfterLogin){
             String email = editText_email.getText().toString().trim();
             String pass = editText_password.getText().toString().trim();
@@ -98,12 +104,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 editText_email.setError("Masukkan Email:");
                 editText_password.setError("Masukkan Password:");
             }
+//   ketika kondisi klik register
         }else if(v == toRegister){
             Intent register = new Intent(MainActivity.this, RegisterActivity.class);
             startActivity(register);
         }
     }
 
+
+//   function login
     private void Login(final String email, final String pass) {
         loading.setVisibility(View.VISIBLE);
         AfterLogin.setVisibility(View.GONE);
@@ -114,15 +123,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onResponse(String response) {
                         try {
+                            // melakukan parsing data pada json
                             JSONObject jsonObject = new JSONObject(response);
                             Boolean success= jsonObject.getBoolean("success");
                             JSONObject data = jsonObject.getJSONObject("data");
                             String token = data.getString("token");
                             String name = data.getString("name");
                             String msg = jsonObject.getString("message");
+
+                            // kondisi ketika success = True
                             if(success) {
                                 SharedPreferences mSettings = MainActivity.this.getSharedPreferences("Settings", Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = mSettings.edit();
+                                // menyimpan value dengan key
                                 editor.putString("token", token);
                                 editor.putString("name",name);
                                 editor.apply();
@@ -137,11 +150,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 loading.setVisibility(View.GONE);
                                 AfterLogin.setVisibility(View.VISIBLE);
                             } else {
+                                // kondisi ketika succes = false
                                 Toast.makeText(MainActivity.this, "Gagal Login!" + msg, Toast.LENGTH_SHORT).show();
                                 loading.setVisibility(View.GONE);
                                 AfterLogin.setVisibility(View.VISIBLE);
                             }
-                        } catch (JSONException e) {
+                        } catch (JSONException e) { // ketika parsing data gagal / tidak sesuai
                             e.printStackTrace();
                             Toast.makeText(MainActivity.this, "Login Error!" + e.toString(), Toast.LENGTH_SHORT).show();
                             loading.setVisibility(View.GONE);
@@ -150,6 +164,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 },
                 new Response.ErrorListener() {
+                    // ketika Response error
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(MainActivity.this, "Error!" + error.toString(),Toast.LENGTH_SHORT).show();
@@ -160,6 +175,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 })
 
         {
+            // menginputkan data dengan parameter
             @Override
             protected Map<String,String> getParams() throws AuthFailureError{
                 Map<String, String> params = new HashMap<>();
@@ -170,6 +186,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         };
 
+        // request antriang dengan volley
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
 
