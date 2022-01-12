@@ -1,5 +1,6 @@
 package com.example.pmobile;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,6 +22,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -41,8 +43,7 @@ public class HomeActivity extends AppCompatActivity {
     String token;
     SharedPreferences.Editor preferencesEditor;
     private String id_parkir;
-
-
+    String cekStatus="start";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +53,8 @@ public class HomeActivity extends AppCompatActivity {
         // menghubungkan variabel dengan id yang ada pada xml
         toMaps = findViewById(R.id.buttonParkir);
         TextView username = findViewById(R.id.tampilUsername);
-        btnlogout = (ImageButton)findViewById(R.id.buttonLogout);
-        SearchParking = (SearchView)findViewById(R.id.Search);
+        btnlogout = findViewById(R.id.buttonLogout);
+        SearchParking = findViewById(R.id.Search);
 
 
         // waktu
@@ -62,22 +63,6 @@ public class HomeActivity extends AppCompatActivity {
         String [] datefinal = date.toString().split(" ");
         tgl.setText(datefinal[0]+", "+datefinal[1]+" "+datefinal[2]+" "+datefinal[5]);
 
-
-
-
-//        // initial rating bar dan button submit
-//        final RatingBar simpleRatingBar = (RatingBar) findViewById(R.id.RatingBar);
-//        Button submitButton = (Button) findViewById(R.id.submit_rating);
-//        // perform click event on button
-//        submitButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // menampilkan hasil rating
-//                String totalStars = "Total Stars:: " + simpleRatingBar.getNumStars();
-//                String rating = "Rating :: " + simpleRatingBar.getRating();
-//                Toast.makeText(getApplicationContext(), totalStars + "\n" + rating, Toast.LENGTH_LONG).show();
-//            }
-//        });
 
 
 //        set preferenfaces yang hanya bisa diakses pada class
@@ -108,7 +93,6 @@ public class HomeActivity extends AppCompatActivity {
         refresh.setOnClickListener(view -> {
             this.cekPesanParkir(token);
         });
-
 
 
 
@@ -196,6 +180,9 @@ public class HomeActivity extends AppCompatActivity {
                             status.setVisibility(View.VISIBLE);
                             status.setText("Status : "+data.getString("status"));
 
+                            // menyimpan status pesan parkir ke variable global class
+                            cekStatus = data.getString("status");
+
                             //tomaps button
                             toMaps.setVisibility(View.VISIBLE);
 
@@ -260,6 +247,15 @@ public class HomeActivity extends AppCompatActivity {
                         //checkin time
                         TextView checkin = findViewById(R.id.checkinTime);
                         checkin.setVisibility(View.GONE);
+
+                        //cek jika status sebelumnya sampai dan parkid gone
+                        //maka open dialog rating untuk memberi rating
+                        if(!parkID.isShown() && cekStatus.equals("sampai")){
+                            //open dialog
+                            openDialog();
+                            //ubah value cekStatus menjadi start
+                            cekStatus="start";
+                        }
                     }
                 })
 
@@ -406,5 +402,63 @@ public class HomeActivity extends AppCompatActivity {
     public void onResume(){
         super.onResume();
         this.cekPesanParkir(token);
+    }
+
+    //function untuk menampilkan dialog rating
+    public void openDialog() {
+        final Dialog dialog = new Dialog(HomeActivity.this); // Context, this, etc.
+        dialog.setContentView(R.layout.dialog_rating);
+        dialog.setTitle("Rating");
+        //binding button dan ratingbar
+        final RatingBar simpleRatingBar = dialog.findViewById(R.id.RatingBar);
+        Button submitButton = dialog.findViewById(R.id.submit_rating);
+        Button cancelButton = dialog.findViewById(R.id.dialog_cancel);
+        //event handler cancel button
+        cancelButton.setOnClickListener(view -> {
+            dialog.cancel();
+        });
+        //event handler submit rating button
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // menampilkan hasil rating
+                System.out.println(simpleRatingBar.getRating());
+                sendRating(id_parkir,simpleRatingBar.getRating());
+                dialog.cancel();
+            }
+        });
+        dialog.show();
+    }
+
+    //function call api menambah rating ke tempat parkir
+    public void sendRating(String park_id,float rate){
+        //memanggil API
+        String URI = getResources().getString(R.string.SEND_RATING);
+        JSONObject parameters = new JSONObject();
+        try {
+            parameters.put("park_id",park_id);
+            parameters.put("rate",rate);
+        } catch (Exception e) {
+        }
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, URI, parameters,new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Toast.makeText(HomeActivity.this, "Terimakasih!!!", Toast.LENGTH_SHORT).show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(HomeActivity.this, "Error", Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Authorization", "Bearer " + token);
+                return headers;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(request);
     }
 }
