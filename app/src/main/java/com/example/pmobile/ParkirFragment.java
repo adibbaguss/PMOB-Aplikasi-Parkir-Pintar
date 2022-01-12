@@ -55,6 +55,7 @@ public class ParkirFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // mengisi id, nama dan harga apabila argument tidak kosong
         if (getArguments() != null) {
             id = getArguments().getString(ARG_PARAM1);
             nama = getArguments().getString(ARG_PARAM2);
@@ -69,12 +70,14 @@ public class ParkirFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_parkir, container, false);
         Button toInfo = view.findViewById(R.id.buttonInfoParkir);
 
+        // intent untuk menuju ke InforamasiParkirActivity beserta mengirimkan id
         toInfo.setOnClickListener(v -> {
             Intent A_info = new Intent(getActivity().getApplicationContext(),InformasiParkirActivity.class);
             A_info.putExtra("park_id",this.id);
             startActivity(A_info);
         });
 
+        // menampilkan nama  dan harga parkir
         TextView namaParkir = view.findViewById(R.id.tampilListParkir);
         TextView hargaParkir = view.findViewById(R.id.tampilHargaParkir);
         namaParkir.setText(this.nama);
