@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RatingBar;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -61,6 +62,22 @@ public class HomeActivity extends AppCompatActivity {
         String [] datefinal = date.toString().split(" ");
         tgl.setText(datefinal[0]+", "+datefinal[1]+" "+datefinal[2]+" "+datefinal[5]);
 
+
+
+
+//        // initial rating bar dan button submit
+//        final RatingBar simpleRatingBar = (RatingBar) findViewById(R.id.RatingBar);
+//        Button submitButton = (Button) findViewById(R.id.submit_rating);
+//        // perform click event on button
+//        submitButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // menampilkan hasil rating
+//                String totalStars = "Total Stars:: " + simpleRatingBar.getNumStars();
+//                String rating = "Rating :: " + simpleRatingBar.getRating();
+//                Toast.makeText(getApplicationContext(), totalStars + "\n" + rating, Toast.LENGTH_LONG).show();
+//            }
+//        });
 
 
 //        set preferenfaces yang hanya bisa diakses pada class
@@ -199,6 +216,8 @@ public class HomeActivity extends AppCompatActivity {
                                 checkin.setVisibility(View.VISIBLE);
                                 checkin.setText("Checkin Time : "+data.getString("checkin_time"));
                             }
+
+
                             //mengambil id_parkir
                             id_parkir = data.getString("park_id");
                         } catch (JSONException e) {
