@@ -122,7 +122,7 @@ public class InformasiParkirActivity extends FragmentActivity implements OnMapRe
 
                             //rating
                             TextView rating = findViewById(R.id.tampilRating);
-                            rating.setText(dataParkir.getString("rating"));
+                            rating.setText(String.format("%1.1f",Float.parseFloat(dataParkir.getString("rating"))));
                             RatingBar ratingBar = findViewById(R.id.tampilratingBar1);
                             ratingBar.setRating(Float.parseFloat(dataParkir.getString("rating")));
 
