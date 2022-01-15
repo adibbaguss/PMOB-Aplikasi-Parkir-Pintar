@@ -285,8 +285,6 @@ public class HomeActivity extends AppCompatActivity {
                     setLoc.putString("id_parkir", id_parkir);
                     A_maps.putExtras(setLoc);
 
-                    Toast.makeText(HomeActivity.this, "Locatioan ID = " + id_parkir, Toast.LENGTH_SHORT).show();
-
                     startActivity(A_maps);
             }
         });

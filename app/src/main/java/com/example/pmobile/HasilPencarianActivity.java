@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -75,7 +74,7 @@ public class HasilPencarianActivity extends AppCompatActivity {
                                 FragmentManager fragmentManager = getSupportFragmentManager();
                                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-                                // perulangan mengambil string sebanyak jumlah data
+                                // perulangan mengambil data sebanyak jumlah data
                                 for (int i = 0; i < data.length(); i++) {
                                     JSONObject childData = data.getJSONObject(i);
                                     String id, nama, harga;
